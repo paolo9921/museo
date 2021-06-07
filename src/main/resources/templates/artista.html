@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/artista.css}" rel="stylesheet">
+<title th:text="${artista.nome}+' '+${artista.cognome}">pagina
+	dell'artista</title>
+</head>
+<body>
+<div id="container">
+	<header th:replace="fragments/base.html :: header"></header>
+<div id="main">
+	
+	<div class="contenitore" th:object="${artista}">
+		
+		<div id="box1">
+			<h1 class="titolo" id="titoloArtista" th:text="${artista.nome}+' '+${artista.cognome}"></h1>
+			
+			<div class="riga">
+
+				<div class="elenco">
+				<div class="allinea">
+					<ul>						
+						<li th:text="|#{artista.luogoNascita}">Luogo di nascita: </li>
+						<li th:text="#{artista.dataNascita}">Data di nascita: </li>
+						<li th:text="#{artista.luogoMorte}">Luogo di morte: </li>
+						<li th:text="#{artista.dataMorte}">Data di morte: </li>
+					</ul>
+				</div>
+				
+				<div class="allinea" id="info">
+					<strong	class="informazione" th:text="|*{luogoNascita}, *{nazionalita}|"></strong><br>
+					<strong class="informazione" th:text="*{dataNascita}"></strong><br>
+					<strong class="informazione" th:text="*{luogoMorte}"></strong><br>
+					<strong class="informazione" th:text="*{dataMorte}"></strong><br>
+				</div>
+			</div>
+				<div class="allinea" >
+					<img id="fotoArtista" th:attr="src=@{${'/images/'+artista.imgSource}}" height=200px
+						width=150px />
+				</div>
+			</div><!-- end riga -->	
+			
+		</div><!-- end box1 -->
+		
+		<div id="box2">
+			<h1 class="titolo" id="titoloArtista" th:text="#{artista.opere.titolo}"></h1>
+			
+			<div id="containerOpere">
+				
+				<div id="opera" th:each="opera : ${artista.opere}"><a
+					th:href="@{'/opera' + '/' + ${opera.id}}"
+					th:text="${opera.titolo} "></a>
+					<img th:attr="src=@{${'/images/'+opera.imgSource}}" >
+				
+			
+				</div>
+				
+				
+			</div>
+			
+			
+			
+		</div><!-- end box2 -->
+	
+	
+	</div><!-- end contenitore -->
+	
+	
+	
+</div>
+</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

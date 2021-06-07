@@ -1,0 +1,21 @@
+html, body{height: 100%;}
+
+body{
+	margin: 0;
+	background: url("/images/sfondoHome.jpg")
+}
+
+.contenuto{
+	margin-top: 2%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+	height: 60%;
+}
+#box1{
+	background-color: green;
+	width: 10%;
+	height: 200px;
+}
+

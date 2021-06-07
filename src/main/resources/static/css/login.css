@@ -1,0 +1,73 @@
+html, body{height: 100%;}
+
+body{
+	margin: 0;
+	background: url("/images/sfondoHome.jpg");
+	text-align:center;
+}
+
+header{
+	background-color: #424242;
+	text-align: center;
+}
+
+#titolo{
+	margin: 0px;
+	font-size: 44px;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	color: white;
+	
+}
+.riga {
+text-align: center;
+}
+.allinea{
+margin:5px;
+padding: 5px;
+max-width: 500px;
+display: inline-block;
+
+}
+
+#h1{
+	color: #78ab46;	
+}
+h2{
+	
+	margin-top: -20px;
+}
+
+.riquadro-form{
+	font-size: 22px;
+	padding: 20px;
+}
+.input{
+	margin-bottom:20px;
+	height: 30px;
+	width: 250px;
+	border: none;
+	border-radius: 25px;
+	outline: none;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+button {
+	width:200px;
+	background-color: #424242;
+	border-radius: 10px;
+	color: white;
+	padding: 5px 10px;
+	font-size: 16px;
+	cursor: pointer;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	margin-bottom:2%;
+	
+}
+button:hover{
+	background-color: #878787
+}
+.errore{
+	color: red;
+}
+

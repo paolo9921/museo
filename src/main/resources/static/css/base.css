@@ -1,0 +1,78 @@
+html,body{	height: 100%;}
+body{background: url("/images/sfondoHome.jpg");
+min-height:100vh;}
+
+#container{
+
+    height: 100%;
+    min-height:100%;
+}
+body > #container {height: auto; min-height: 100%;}
+#main{
+	padding-bottom:8vh;
+}
+header{
+	background-color: #424242;
+	text-align: center;
+	color: white;
+
+}
+
+h1{
+	margin: 0px;
+	font-size: 42px;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	
+}
+.navbar{
+	border-top: 0.7px solid white;
+	background-color: #78ab46;
+	width: 100%;
+	height: 40px;
+}
+.navbar a{	
+	text-decoration: none;
+	color: white;
+	font-size: 22px;
+	float: left;
+	padding-top: 8px;
+	width: 33.33%
+}
+.navbar a:hover{
+	background-color: #424242;
+	font-size: 24px;
+	padding-bottom: 4px;
+}
+.options{
+	position: absolute;
+	top:20px;
+	right:30px;	
+	font-size: 20px;
+	
+}
+.options a{
+	text-color: white;
+	text-decoration: none;
+}
+#backHome{
+	color: white;
+	border-right: 1px solid white;
+	text-decoration: none;
+	padding-right: 20px;
+}
+#login{
+	color: white;
+	text-decoration: none;
+	padding-left: 20px;
+}
+
+
+#footer{
+    background:#424242;
+   margin-top: -8vh;
+    height:8vh;
+    width:100%;
+    clear:both;
+    text-align:center;
+}

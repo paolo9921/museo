@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head">
+</head>
+<head>
+<link th:href="@{/css/admin/form.css}" rel="stylesheet" />
+<title th:text="#{artista.title.form}">admin page - aggiungi artista</title>
+</head>
+<body>
+	<div id="container">
+		<header th:replace="fragments/admin_base.html :: header"></header>
+		<div id="main">
+			<div>
+				<h2 id="caption" th:text="#{form.artista.caption}">Aggiungi un
+					nuovo artista</h2>
+			</div>
+			<form th:action="@{/admin/modificaArtista}" method="POST"
+				th:object="${artista}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>
+
+				<div class="riga">
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('nome')}"
+							th:errors="*{nome}"></span>
+					</div>
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('cognome')}"
+							th:errors="*{cognome}"></span>
+					</div>
+
+				</div>
+
+
+				<div class="riga">
+					<div class="allinea">
+						<strong th:text="#{form.nome}">Nome:</strong><br> <input
+							type="text" autofocus="autofocus" placeholder="Nome"
+							th:field="*{nome}" />
+
+					</div>
+					<div class="allinea">
+						<strong th:text="#{form.cognome}">Cognome:</strong><br> <input
+							type="text" autofocus="autofocus" placeholder="Cognome"
+							th:field="*{cognome}" />
+
+					</div>
+				</div>
+				<!-- riga 1 -->
+
+				<div class="riga">
+
+					<div class="allinea">
+						<br> <strong th:text="#{form.dataNascita}">Data di
+							Nascita:</strong><br> <input type="date" th:field="*{dataNascita}" />
+					</div>
+
+					<div class="allinea">
+						<br> <strong th:text="#{form.dataMorte}"> Data di
+							Morte:</strong><br> <input type="date" th:field="*{dataMorte}" />
+					</div>
+
+
+				</div>
+				<!-- riga 2 -->
+
+				<div class="riga">
+					<div class="allinea">
+						<br> <strong th:text="#{form.cittaNascita}">Citta di
+							Nascita:</strong><br> <input type="text" th:field="*{luogoNascita}"
+							placeholder="Citta natale" />
+					</div>
+					<div class="allinea">
+						<br> <strong th:text="#{form.cittaMorte}">Citta di
+							Morte:</strong><br> <input type="text" th:field="*{luogoMorte}"
+							placeholder="Citta di morte" />
+					</div>
+				</div>
+				<!-- riga 3 -->
+
+				<div class="riga">
+					<div class="allinea">
+
+						<br> <strong th:text="#{form.nazionalita}">Nazionalita:</strong><br>
+						<input type="text" autofocus="autofocus" placeholder="Nazionalita"
+							th:field="*{nazionalita}" />
+					</div>
+					<div class="allinea">
+						<br> <strong th:text="#{form.fotoArtista}">Foto
+							dell'artista:</strong><br> <input type="file" th:field="*{imgSource}" />
+					</div>
+				</div>
+				<!-- riga 4 -->
+
+
+
+
+				<div class="riga">
+
+					<div class="allinea">
+						<span><button type="submit" th:text="#{form.conferma}">Conferma</button></span>
+					</div>
+
+				</div>
+
+
+
+
+			</form>
+			<a class="indietro" th:href="@{/admin/artisti}"><button th:text="#{form.indietro}">
+					Indietro</button></a>
+		</div>
+	</div>
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>

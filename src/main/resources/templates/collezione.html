@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/collezione.css}" rel="stylesheet" />
+<title th:object="${collezione}" th:text="'collezione '+${collezione.nome}"></title> 
+  <body>
+  <div id="container">
+  	<header th:replace="fragments/base.html :: header">	</header>
+  	
+  	<div id="main" th:object="${collezione}">
+  		
+  		<div class="intestazione">
+  			<h2 id="titolo" th:text="*{nome}"></h2>
+  			<h2 th:text="|#{collezione.curatore} *{curatore.nome} *{curatore.cognome}|"></h2>
+		</div>
+		
+		
+		
+		
+		<div class="contenitore" th:object="${collezione}">
+		
+		<div id="box1">
+			<h2 class="titoloParagrafo" th:text="#{collezione.descrizione}"></h2>
+			<p th:text="*{descrizione}">
+			
+		</div><!-- end box1 -->
+		
+		<div id="box2">
+			<h2 class="titoloParagrafo" th:text="#{collezione.opere}"></h2>
+			<div id="containerOpere">
+				
+				<div id="opera" th:each="opera : *{opere}"><a
+					th:href="@{'/opera' + '/' + ${opera.id}}"
+					th:text="|${opera.titolo} (${opera.anno})|"></a>
+					<img th:attr="src=@{${'/images/'+opera.imgSource}}">
+				</div>
+			
+				</div>
+		</div>
+	
+	</div><!-- end contenitore -->
+		
+		
+	</div>
+	</div>
+  	<footer th:replace="fragments/base.html :: fondo"></footer>
+  	
+  </body>
+
+ </html>

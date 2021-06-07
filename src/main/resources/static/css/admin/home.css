@@ -1,0 +1,22 @@
+div#container{
+    position:relative; 
+    width: 100%; 
+    height: auto !important;
+    height: 100%;
+    min-height:100%;
+}
+
+h2#titolo{
+	margin-top:3%;
+}
+.elenco{
+	text-decoration: none;
+	font-size: 22px;
+	padding:10px;
+}
+
+div.primoElemento{
+	border-top: 0.5px solid #424242;
+	margin-top:20px;
+	padding-top:20px;
+}

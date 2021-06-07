@@ -1,0 +1,52 @@
+html,body{height: 100%;}
+body{
+	margin:0px;
+	text-align: center;
+}
+#titolo{
+	margin-top:1%;
+	font-size:44px;
+	margin-bottom:0px;
+}
+.intestazione{
+	border-bottom: 1px solid #67ab48;
+}
+.contenitore{
+	margin-left:10vh;
+	margin-right:10vh;
+	display: flex;
+	justify-content: space-between;
+	flex-flow:row wrap;	
+}
+.titoloParagrafo{
+	font-size: 35px;
+}
+#box1{
+	text-align:center;
+	width:30%;
+}
+p{
+	font-size:20px;
+}
+#box2{
+	width:68%;
+	
+}
+#containerOpere{
+	margin:2%;
+	display: flex;
+	justify-content: space-around;
+	flex-flow: row wrap;
+}
+
+#opera{
+	display:grid;
+	margin: 20px;
+	font-size: 22px;
+}
+img{
+	max-width:300px;
+	max-height:200px;
+	border-radius: 10px;
+	box-shadow: 7px 7px 10px 3px  rgba(120,171,70,0.3);
+}

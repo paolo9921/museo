@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/opera.css}" rel="stylesheet">
+<title th:object="${opera}" th:text="${opera.titolo}">pagina
+	dell'opera</title>
+</head>
+<body>
+	<div id="container">
+		<header th:replace="fragments/base.html :: header"></header>
+		<div id="main">
+		
+		<div class="contenitore" th:object="${opera}">
+			<div id="box1">
+				<h1 class="titolo" th:text="${opera.titolo}"></h1>
+				
+				
+				<div class="riga">
+					<div class="allinea">
+						<h2 th:text="#{opera.autore}">Nome:</h2>
+					</div>
+					<div class="allinea">
+						<a th:href="@{'/artista' + '/' + ${opera.artista.id}}" th:text="|*{artista.nome} *{artista.cognome}|"></a>
+					</div>
+				</div>
+				
+				
+				<div>
+					<h2 th:text="#{opera.descrizione}"></h2>
+					<p class="descrizione" th:text="|#{opera.inizioDescrizione} *{anno}.|">
+					<p class="descrizione" th:text="*{descrizione}">
+				</div>
+				
+				
+			</div><!-- end box1 -->
+			
+			
+		<div id="box2">
+			<img th:attr="src=@{${'/images/'+opera.imgSource}}">
+		</div>
+		
+			
+			
+			
+		</div>
+			
+					
+		
+		</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

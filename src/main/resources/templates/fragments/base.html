@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/base.css}" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<header th:fragment="header">
+		<div class="options">
+		<a id="backHome" href="/"> Home Page </a>
+		<a id ="login" th:href="@{/login}">Login</a>
+		</div>
+		<h1 th:text="#{base.nomeMuseo}"></h1>
+		
+		<div class="navbar">
+			<a th:href="@{/artisti}" th:text="#{base.artisti}"></a> 
+			<a th:href="@{/collezioni}" th:text="#{base.collezioni}"></a>
+			<a href="/" th:text="#{base.informazioni}"></a>
+		</div>
+		
+	</header>
+	
+	<div id="footer" th:fragment="fondo">
+	<a th:href="@{/default}" th:text="#{base.areaAdmin}"></a>
+	</div>
+	</div>
+</body>
+</html>

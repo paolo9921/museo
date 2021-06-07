@@ -1,0 +1,80 @@
+body{
+	margin: 0;
+	background: url("/images/sfondoHome.jpg");
+	max-width: 100%;
+}
+.contenitore{
+	margin-top:2%;
+	margin-bottom: 2%;
+	display: flex;
+	justify-content: space-between;
+	
+}
+.titolo{
+	text-align: center;	
+}
+
+
+.riga {
+text-align: left;
+display:flex;
+justify-content:space-between;
+font-size: 20px;
+margin-left:2%;
+}
+.allinea{
+max-width: 500px;
+display: inline-block;
+}
+.allinea#info{
+	
+	margin-top:2%;
+}
+
+strong{
+	border-bottom: 0.5px solid gray;
+	font-size:20.5px;
+}
+#fotoArtista{
+	margin-right:5vh;	
+}
+li{
+	border-bottom: 0.5px solid gray;
+}
+#containerOpere{
+	display: flex;
+	justify-content: space-around;
+	flex-flow: row wrap;
+}
+
+.bio{
+	margin-left:5%;
+}
+#opera{
+	display:grid;
+	margin:5%;
+	font-size: 18px;
+	
+}
+#box1{
+	border-right: 2px solid #292929;
+	width: 50%;
+	position:relative;
+}
+#box2{
+	width: 44%;
+	margin-right: 3%;
+	margin-left: 3%;
+	flex-wrap: wrap;
+}
+#bio{
+	text-align: justify;
+	width: 85%;
+	margin-left: 8%;
+}
+
+
+img{
+	box-shadow: 7px 7px 10px 3px  rgba(120,171,70,0.3);
+	border-radius:10px;
+}

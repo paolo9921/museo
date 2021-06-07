@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head"></head>
+<head>
+<link th:href="@{/css/admin/home.css}" rel="stylesheet" />
+<title>admin page</title>
+</head>
+
+<body>
+<div id="container">
+	<header th:replace="fragments/admin_base.html :: header"></header>
+	
+		<h2 id="titolo" th:text="#{admin_home.caption}">cosa vuoi fare:</h2>
+		<div class="primoElemento">
+			<a class="elenco" th:href="@{/admin/collezioni}" th:text="#{admin_home.manageCollection}">Gestisci collezioni</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/artisti}" th:text="#{admin_home.manageArtist}">Gestisci artisti</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/opere}" th:text="#{admin_home.manageOpera}">Gestisci opere</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/curatori}" th:text="#{admin_home.manageCuratori}">Gestisci curatori</a>
+   		</div>
+   		<div class="primoElemento">
+			<a class="elenco" th:href="@{/admin/addCollezione}" th:text="#{admin_home.addColl}">Inserisci nuova collezione</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/addArtista}" th:text="#{admin_home.addArtist}">Inserisci nuovo artista</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/addOpera}" th:text="#{admin_home.addOpera}">Inserisci nuova opera</a>
+   		</div>
+   		<div>
+			<a class="elenco" th:href="@{/admin/addCuratore}" th:text="#{admin_home.addCuratore}">Inserisci nuovo curatore</a>
+   		</div>
+   		<div class="primoElemento">
+			<a class="elenco" th:href="@{/logout}">Logout</a>
+   		</div>
+		
+	</div>
+
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>

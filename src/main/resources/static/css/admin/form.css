@@ -1,0 +1,59 @@
+html,body{height: 100%;}
+body{
+	margin: 0px;
+	text-align: center;
+}
+#caption{
+	font-size: 35px;
+	margin: 20px;
+}
+.riga {
+text-align: center;
+}
+.allinea{
+margin:5px;
+padding: 5px;
+max-width: 500px;
+display: inline-block;
+}
+
+
+strong{
+	font-size:20px;
+}
+
+input,select{
+	margin-bottom:20px;
+	height: 30px;
+	width: 250px;
+	border: none;
+	border-radius: 25px;
+	outline: none;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+option{
+	font-size:19px;
+}
+
+button {
+	width:200px;
+	background-color: #424242;
+	border-radius: 10px;
+	color: white;
+	padding: 5px 10px;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0px 30px 0 30px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+button:hover{
+	background-color: #878787
+}
+#firstButton{
+	margin-bottom:10px;
+}
+.errore{
+	color: red;
+}
+

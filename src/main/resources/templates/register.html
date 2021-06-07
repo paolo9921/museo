@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/login.css}" rel="stylesheet" />
+<title th:text="#{register.title}">Registrati</title>
+</head>
+<body>
+<div id="container">
+	<header>
+		<h1 th:text="#{base.nomeMuseo}">Museo del Torrino</h1>
+	</header>
+	<div id="main">
+		<h1 id="caption" th:text="#{register.caption}"></h1>
+		<form th:action="@{/register}" method="POST" th:object="${user}">
+							<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>
+			
+			<div class="riga">
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('nome')}"
+							th:errors="*{nome}"></span>
+					</div>
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('cognome')}"
+							th:errors="*{cognome}"></span>
+					</div>
+			</div>
+			
+			
+			
+			<div class="riga">
+				<div class="allinea">
+					<strong th:text="#{register.name}">Nome:</strong><br> <input
+						type="text" class="input" name="nome" autofocus="autofocus"
+						placeholder="Nome">
+				</div>
+
+
+				<div class="allinea">
+					<strong th:text="#{register.surname}">Cognome:</strong><br> <input
+						type="text" class="input" name="cognome" autofocus="autofocus"
+						placeholder="Cognome">
+				</div>
+
+			</div>
+	
+		<div class="riga" th:object="${credentials}">
+			<div class="allinea">
+				<strong>Username:</strong><br> <input th:field="${credentials.username}" type="text" class="input"
+					name="username" autofocus="autofocus" placeholder="Username">
+			</div>
+			<div class="allinea">
+				<strong>Passowrd:</strong><br> <input th:field="${credentials.password}" type="password" class="input"
+					name="password" autofocus="autofocus" placeholder="Password">
+			</div>
+		</div>
+
+			<div class="bottoni">
+				<span><button id="loginButton" type="submit" th:text="#{register.create}">Crea account</button></span>
+			</div>
+		</form>
+		<a th:href="@{/login}"><button th:text="#{form.indietro}"> Indietro</button></a> 
+		
+	</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+
+
+</body>
+</html>

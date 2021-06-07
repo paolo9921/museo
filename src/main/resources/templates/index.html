@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/home.css}" rel="stylesheet" />
+<title>museo</title>
+</head>
+
+<body>
+<div id="container">
+	<header th:replace="fragments/base.html :: header"></header>
+<div id="main">
+	<div class="contenuto">
+		<div id="box1">SCOPRI LE NOSTRE OPERE</div>
+		<img id="img1" src="/images/quadro.jpg" width="400px" height="300px" />
+		<img id="img2" src="/images/quadro1.jpg" width="300px" height="200px" />
+	</div>
+	
+	</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

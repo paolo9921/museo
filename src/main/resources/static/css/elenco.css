@@ -1,0 +1,118 @@
+html,body{height: 100%;margin:0px;}
+body{
+	text-align: center;
+}
+#contenitore{
+	margin-bottom: 2%;
+	display:flex;
+	justify-content: space-between;
+	
+}
+
+.table-ext {
+	width:60%;
+	margin-top:3%;
+	border-bottom: 2px solid #78ab46;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
+
+caption{
+	font-size: 22px;
+	border-bottom: 2px solid #78ab46;
+	
+}
+th{
+
+	border-bottom: 1px solid #78ab46;
+}
+.primaColonna{
+	width:35%;
+}
+.secondaColonna{
+	width:35%;
+}
+.colonnaNazione{
+	width: 20%;
+}
+.colonnaData{
+	width: 15%;
+}
+#tornaElenco{
+	width: 250px;
+}
+.divinterno{
+	max-height: 35vh;
+overflow:auto;
+width:100%;
+}
+
+.table-int {
+width:100%; 
+}
+
+.table-int td {
+font-size: 20px;
+line-height: 25px;
+}
+
+#box1{
+	width:40%;
+	margin-left:10%;
+}
+#ricerca{
+	vertical-align:middle;
+}
+.cercaPer{
+	margin:5px 10px 5px 0px;
+	padding: 5px;
+	max-width: 500px;
+	display: inline-block;
+}
+form{
+	
+	display: inline;
+	width:500px;
+}
+.cerca{
+	font-size:20px;
+	text-shadow: 6px 3px 8px rgba(0,0,0,0.46);
+	padding-right:10px;
+}
+#rigaRicerca{
+	margin-top:2%;
+}
+#box2{
+	width:40%;
+	margin-right:10%;
+}
+input {
+	opacity: 0.6;
+	height: 24px;
+	width: 150px;
+	border: none;
+	border-radius: 25px;
+	outline: none;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+button{
+	width:100px;
+	
+	opacity: 0.7;
+	border-radius: 10px;
+	border-color:  #78ab46;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+button:hover{
+	background-color: #D1D1D1;
+	font-size: 16.5px;
+	
+}
+button:active{
+		background-color: #D1D1D1;
+	font-size: 16.5px;
+}
+

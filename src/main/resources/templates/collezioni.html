@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/elenco.css}" rel="stylesheet" />
+<title>collezioni</title>
+</head>
+<body>
+<div id="container">
+	<header th:replace="fragments/base.html :: header"></header>
+	
+
+		<div id="main">
+		<table align="center" class="table-ext">
+			<caption th:text="#{collezioni.table.caption}">ELENCO COLLEZIONI</caption>
+			<thead>
+				<tr>
+					<th class="primaColonna" th:text="#{collezioni.table.name}">NOME</th>
+					<th class="secondaColonna" th:text="#{collezioni.table.curatore}">CURATORE</th>
+					<th th:text="#{collezioni.table.stanza}">STANZA</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td colspan="3">
+						<div class="divinterno">
+							<table align="center" class="table-int">
+								<tr th:each="collezione : ${collezioni}">
+									
+									<td class="primaColonna"><a
+										th:href="@{/collezione/{id}(id=${collezione.id})}" th:text="${collezione.nome}"></a></td>
+									<td class ="secondaColonna" th:text="|${collezione.curatore.nome} ${collezione.curatore.cognome}|"></td>
+									<td th:text="${collezione.stanza}"></td>
+									
+
+								</tr>
+							</table>
+							<!--Table-int-->
+						</div>
+					</td>
+					<!--/colspan tabella ext-->
+				</tr>
+			</tbody>
+		</table>
+		<!--/table-ext-->
+
+		<div id="rigaRicerca">
+			<form th:action="@{/findCollezioneName}" method="GET">
+				<span class="cerca" th:text="#{search.name}">Cerca per nome: </span><input th:name="nomeCollezione"
+					type="text" Placeholder="nome della collezione">
+					<button type="submit" th:text="#{search.button}">Cerca</button>
+			</form>
+		</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>

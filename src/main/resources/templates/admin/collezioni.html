@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head"></head>
+<head>
+<link th:href="@{/css/admin/elenco.css}" rel="stylesheet" />
+<title th:text="#{admin.collezioni.title}">admin page - collezioni</title>
+</head>
+
+<body>
+<div id="container">
+	<header th:replace="fragments/admin_base.html :: header"></header>
+	<div id="main">
+
+
+
+
+
+		<table align="center" class="table-ext">
+			<caption th:text="#{collezioni.table.caption}">ELENCO
+				ARTSTI</caption>
+			<thead>
+				<tr>
+					<th id="colonnaNome" th:text="#{artisti.table.name}">NOME</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td colspan="3">
+						<div class="divinterno">
+							<table align="center" class="table-int">
+								<tr th:each="collezione : ${collezioni}">
+									<td id="colonnaNome"><a	th:href="@{'/collezione' + '/' + ${collezione.id}}"
+															th:text="${collezione.nome}"></a></td>
+									<td class="opzioniCollezioni"><a th:href="@{'/collezioni/modifica'+'/'+${collezione.id}}"
+																	 th:text="#{admin.modifica}">modifica</a></td>
+									<td class="opzioniCollezioni"><a th:href="@{'/collezioni/delete'+'/'+${collezione.id}}"
+																	 th:text="#{admin.elimina}">elimina</a></td>
+
+								</tr>
+							</table>
+							<!--Table-int-->
+						</div>
+					</td>
+					<!--/colspan tabella ext-->
+				</tr>
+			</tbody>
+		</table>
+		<!--/table-ext-->
+
+
+		<div>
+			<form th:action="@{/admin/addCollezione}">
+				<button type="submit" th:text="#{button.addCollezione}">Aggiungi nuova collezione</button>
+			</form>
+		</div>
+	
+	<h4 th:text="#{admin.collezioni.alert}"></h4>
+	</div>
+</div>
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>

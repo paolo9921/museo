@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head">
+</head>
+<head>
+<link th:href="@{/css/admin/form.css}" rel="stylesheet" />
+<title th:text="#{opera.title.form}">admin page - collezioni</title>
+</head>
+<body>
+	<div id="container">
+		<header th:replace="fragments/admin_base.html :: header"></header>
+		<div id="main">
+			<div>
+				<h2 id="caption">Aggiungi un nuova opera</h2>
+			</div>
+			<form th:action="@{/admin/addOpera}" method="POST"
+				th:object="${opera}">
+
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>
+
+				<span class="errore" th:if="${#fields.hasErrors('titolo')}"
+					th:errors="*{titolo}"></span>
+
+
+				<div class="riga">
+					<div class="allinea">
+						<strong>Titolo:</strong><br> <span><input type="text"
+							th:placeholder="Titolo" th:field="*{titolo}" /></span>
+					</div>
+
+
+
+					<div class="allinea">
+						<strong>Artista:</strong><br> <select
+							name="artistaSelezionato">
+							<option th:each="artista : ${artisti}" th:value="${artista.id}"
+								th:text="|${artista.nome} ${artista.cognome}" />
+						</select> <br>
+
+					</div>
+				</div>
+				<!-- riga 1 -->
+
+				<div class="riga">
+					<div class="allinea">
+						<strong>Anno realizzazione:</strong><br> <span><input
+							th:placeholder="Anno" type="text" th:field="*{anno}" /></span>
+					</div>
+
+					<div class="allinea">
+						<strong>Collezione:</strong><br> <select
+							name="collezioneSelezionata">
+							<option th:each="collezione : ${collezioni}"
+								th:value="${collezione.id}" th:text="${collezione.nome}" />
+						</select>
+					</div>
+				</div>
+				<!-- riga 2 -->
+
+				<div class="riga">
+					<div class="allinea">
+						<strong>Descrizione:</strong><br> <span><input
+							th:placeholder="descrizione" type="text"
+							th:field="*{descrizione}" /></span>
+					</div>
+					<div class="allinea">
+						<strong>Seleziona immagine: </strong> <br>
+						<input type="file" th:field="*{imgSource}">
+					</div>
+
+				</div>
+				<!-- riga 3 -->
+
+
+				<div class="riga">
+					<div class="allinea">
+						<span><button id="firstButton" type="submit">Conferma</button></span>
+
+
+					</div>
+				</div>
+
+			</form>
+			<a class="indietro" th:href="@{/admin/opere}"><button th:text="#{form.indietro}">
+					Indietro</button></a>
+
+		</div>
+	</div>
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>

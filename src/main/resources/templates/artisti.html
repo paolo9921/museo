@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/elenco.css}" rel="stylesheet" />
+<title>artisti</title>
+</head>
+<body>
+	<div id="container">
+		<header th:replace="fragments/base.html :: header"></header>
+		<div id="main">
+
+
+			<table align="center" class="table-ext">
+				<caption th:text="#{artisti.table.caption}">ELENCO ARTSTI</caption>
+				<thead>
+					<tr>
+						<th class="primaColonna" th:text="#{artisti.table.name}">NOME</th>						
+						<th class="colonnaData" th:text="#{artista.dataNascita}"></th>
+						<th class="colonnaData" th:text="#{artista.dataMorte}"></th>
+						<th class="colonnaNazione"th:text="#{artisti.table.nation}">NAZIONE</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td colspan="4">
+							<div class="divinterno">
+								<table align="center" class="table-int">
+									<tr th:each="artista : ${artisti}">
+										<td class="primaColonna"><a
+											th:href="@{'/artista' + '/' + ${artista.id}}"
+											th:text="${artista.nome}+' '+${artista.cognome}"></a></td>
+										<td class="colonnaData" th:text="${artista.dataNascita}"></td>
+										<td class="colonnaData" th:text="${artista.dataMorte}"></td>
+										<td class="colonnaNazione" th:text="${artista.nazionalita}"></td>
+
+									</tr>
+								</table>
+								<!--Table-int-->
+							</div>
+						</td>
+						<!--/colspan tabella ext-->
+					</tr>
+				</tbody>
+			</table>
+			<!--/table-ext-->
+			<div id="contenitore">
+				<div id="box1">
+				<h3 th:text="#{searchBy}"></h3>
+					<div id="ricerca">
+
+						<form th:action="@{/findName}" method="GET">
+							<div class="cercaPer">
+								<span class="cerca" th:text="#{search.name}">Cerca per
+									nome: </span><input th:name="nomeArtista" type="text"
+									autofocus="autofocus" placeholder="nome da cercare">
+								<button type="submit">Cerca</button>
+							</div>
+						</form>
+						
+						<form th:action="@{/findNazione}" method="GET">
+						<div class="cercaPer">
+							<span class="cerca" th:text="#{search.nation}">Cerca per
+								nazione: </span><input th:name="nazioneArtista" type="text"
+								placeholder="nazione da cercare">
+							<button type="submit" th:text="#{search.button}">Cerca</button>
+							</div>
+						</form>
+						<br> <a th:href="@{/artisti}"><button id="tornaElenco"
+								th:text="#{search.back}">Torna all'elenco completo</button></a>
+					</div>
+				</div><!-- end box1 -->
+
+
+					<div id="box2">
+						<h3 th:text="#{orderBy}"></h3>
+						<div>
+							<form th:action="@{/artisti}" method="GET">
+								<button type="submit" th:text="#{order.name}">Nomeee</button>
+							</form>
+							<form th:action="@{/orderCognome}" method="GET">
+								<button type="submit" th:text="#{order.surname}">Nomeee</button>
+							</form>
+							<form th:action="@{/orderNazione}" method="GET">
+								<button type="submit" th:text="#{order.nation}">Nomeee</button>
+							</form>
+							<br>
+							<form th:action="@{/orderNascita}" method="GET">
+								<button type="submit" th:text="#{order.birth}">Nomeee</button>
+							</form>
+							<form th:action="@{/orderMorte}" method="GET">
+								<button type="submit" th:text="#{order.death}">Nomeee</button>
+							</form>
+						</div>
+
+					</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/login.css}" rel="stylesheet" />
+<title th:text="#{login.title}"></title>
+</head>
+<body>
+<div id="container">
+<header><h1 id="titolo" th:text="#{base.nomeMuseo}">Museo del Torrino</h1></header>
+	<div id="main">
+		<h1 id="h1" th:text="#{login.secondTitle}">Login page</h1>
+		<h2 th:text="#{login.caption}">accedi per navigare nel sito</h2>
+		<form th:action="@{/login}" method="POST">
+
+
+		<div class="riga">
+			<div class="allinea">
+				<strong>Username:</strong><br> <input type="text" class="input" name="username"
+					autofocus="autofocus" placeholder="Username">
+			</div>
+			<div class="allinea">
+				<strong>Passowrd:</strong><br> <input type="password" class="input" name="password"
+					autofocus="autofocus" placeholder="Password">
+			</div>
+		</div>
+			<div class="bottoni">
+				<button id="firstButton" type="submit">Log In</button>
+				
+			</div>
+			</form>
+			<div class="riga">
+				<div class="allinea">
+			<form th:action="@{/register}"><button type="submit" th:text="#{login.register}"></button></form>
+				</div>
+				<div class="allinea">
+			<a th:href="@{/index}"><button th:text="#{form.indietro}">Indietro</button></a>
+				</div>
+			</div>
+					
+	</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+
+
+</body>
+</html>

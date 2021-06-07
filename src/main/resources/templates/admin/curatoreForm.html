@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head"></head>
+<head>
+<link th:href="@{/css/admin/form.css}" rel="stylesheet" />
+<title th:text="#{curatore.title.form}">admin page - curatore</title>
+</head>
+
+<body>
+<div id="container">
+	<header th:replace="fragments/admin_base.html :: header"></header>
+	<div class="main">
+		<h2 id="caption" th:text="#{form.curatore.caption}">Aggiungi un nuovo curatore</h2>
+		<form th:action="@{/admin/addCuratore}" method="POST" th:object=${curatore}>
+
+	<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		
+		<div class="riga">
+			<div class="allinea">
+			<span class="errore" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+			<div class="allinea">
+			<span class="errore" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+			</div>
+		</div>
+
+			<div class="riga">
+				<div class="allinea">
+					<strong th:text="#{form.nome}">Nome:</strong><br> <input
+						type="text" name="nome" autofocus="autofocus"
+						placeholder="Nome:">
+				</div>
+
+
+				<div class="allinea">
+					<strong th:text="#{form.cognome}">Cognome:</strong><br> <input
+						type="text" class="input" name="cognome" autofocus="autofocus"
+						placeholder="Cognome:">
+				</div>
+
+			</div>
+
+			<div class="riga">
+
+				<div class="allinea">
+					<strong th:text="#{form.email}">Email:</strong><br> <input
+						type="text" class="input" name="email" autofocus="autofocus"
+						placeholder="Email ">
+				</div>
+
+				<div class="allinea">
+					<strong th:text="#{form.numeroTelefono}">Numero di
+						telefono:</strong><br> <input type="text" class="input"
+						name="numeroTelefono" autofocus="autofocus"
+						placeholder="Numero di telefono: ">
+				</div>
+			</div>
+
+
+			<div class="riga">
+
+				<div class="allinea">
+					<span><button id="firstButton" type="submit"
+							th:text="#{form.conferma}">Conferma</button></span>
+							
+							
+				</div>
+			</div>
+			
+		</form>
+		<a class="indietro" th:href="@{/admin/curatori}"><button th:text="#{form.indietro}"> Indietro</button></a> 
+	</div>
+	</div>
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>

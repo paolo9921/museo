@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/admin_base.html :: head"></head>
+<head>
+<link th:href="@{/css/admin/elenco.css}" rel="stylesheet" />
+<title th:text="#{admin.opere.title}">admin page - artisti</title>
+</head>
+
+<body>
+<div id="container">
+	<header th:replace="fragments/admin_base.html :: header"></header>
+	<div id="main">
+		
+		
+		
+		<table align="center" class="table-ext">
+			<caption th:text="#{opere.table.caption}">ELENCO OPERE</caption>
+			<thead>
+				<tr>
+					<th id="colonnaNome" th:text="#{opere.table.title}">TITOLO</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td colspan="3">
+						<div class="divinterno">
+							<table align="center" class="table-int">
+								<tr th:each="opera : ${opere}">
+									<td id="colonnaNome"><a	th:href="@{'/opera' + '/' + ${opera.id}}"
+															th:text="${opera.titolo}"></a></td>
+									<td class="opzioniCollezioni"><a th:href="@{'/opere/modifica'+'/'+${opera.id}}"
+																	 th:text="#{admin.modifica}">modifica</a></td>
+									<td class="opzioniCollezioni"><a th:href="@{'/opere/delete'+'/'+${opera.id}}"
+																	 th:text="#{admin.elimina}">elimina</a></td>
+
+								</tr>
+							</table>
+							<!--Table-int-->
+						</div>
+					</td>
+					<!--/colspan tabella ext-->
+				</tr>
+			</tbody>
+		</table>
+		<!--/table-ext-->
+		
+		<div>
+			<form th:action="@{/admin/addOpera}">
+				<button type="submit" th:text="#{button.addOpera}">Aggiungi nuova opera</button>
+			</form>
+		</div>
+		
+		
+	</div>
+</div>
+	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
+</body>
+</html>
