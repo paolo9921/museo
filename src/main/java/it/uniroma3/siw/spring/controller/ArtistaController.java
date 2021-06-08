@@ -32,6 +32,8 @@ public class ArtistaController {
 
 	private Long idCorrente;
 
+	private String imgSourceCorrente;
+
         
     
     @RequestMapping(value = "/artisti", method = RequestMethod.GET)
@@ -101,6 +103,8 @@ public class ArtistaController {
 	public String modificaArtista(@PathVariable("id") Long id, Model model) {
 		//salvo l'id in una variabile locale per poter eliminare la collezione una volta aggiunta quella nuova (modificata)
 		this.idCorrente = id;
+		this.imgSourceCorrente = this.artistaService.artistaPerId(id).getImgSource();
+		logger.debug("IMG SOURCE E' "+imgSourceCorrente);
 		model.addAttribute("artista",this.artistaService.artistaPerId(id));
 		
 		return "admin/artistaForm.html";
@@ -111,11 +115,24 @@ public class ArtistaController {
     	this.artistaValidator.validateModifica(artista, bindingResult);
         if (!bindingResult.hasErrors()) {
 			if(idCorrente != null) {
-				this.artistaService.cancella(this.artistaService.artistaPerId(idCorrente));
+				artista.setId(idCorrente);
+				//this.artistaService.cancella(this.artistaService.artistaPerId(idCorrente));
 				this.idCorrente = null;
 			}
-	    	this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
-            model.addAttribute("artisti", this.artistaService.tutti());
+			
+			
+			this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+			logger.debug("************* HO INSERITO DOPO MODIFICA**************************"+this.artistaService.artistaPerId(artista.getId()).getImgSource()+"CIAO");
+			
+			if(this.artistaService.artistaPerId(artista.getId()).getImgSource().equals("")) {
+				logger.debug("************* ORA IMPOSTO IMGSOURCE *"+ imgSourceCorrente);
+				artista.setImgSource(imgSourceCorrente);
+				logger.debug("************* HO IMPOSTATO IMGSOURCE****"+artista.getImgSource());
+				this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+				imgSourceCorrente=null;
+			}
+			
+			model.addAttribute("artisti", this.artistaService.tutti());
             return "admin/artisti.html";
         }
         return "admin/artistaForm.html";

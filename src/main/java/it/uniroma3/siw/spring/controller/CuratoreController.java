@@ -45,11 +45,11 @@ public class CuratoreController {
         if (!bindingResult.hasErrors()) {
           	
           	if(idCorrente != null) {
-				this.curatoreService.cancella(this.curatoreService.curatorePerId(idCorrente));
-				this.idCorrente = null;
+          		curatore.setId(idCorrente);
+  				this.idCorrente = null;
 			}
           	this.curatoreService.inserisci(this.curatoreService.toUpperCase(curatore));
-            model.addAttribute("curatore", this.curatoreService.tutti());
+            model.addAttribute("curatori", this.curatoreService.tutti());
             return "admin/curatori.html";
         }
         return "admin/curatoreForm.html";

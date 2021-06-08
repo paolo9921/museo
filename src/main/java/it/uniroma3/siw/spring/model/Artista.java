@@ -47,7 +47,7 @@ public class Artista {
 	
 
 
-	@OneToMany(mappedBy = "artista", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "artista")
 	private List<Opera> opere;
 
 	public Long getId() {
