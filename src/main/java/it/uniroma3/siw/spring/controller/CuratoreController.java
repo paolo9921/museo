@@ -43,12 +43,13 @@ public class CuratoreController {
     public String newCuratore(@ModelAttribute("curatore") Curatore curatore, Model model, BindingResult bindingResult) {
     	this.curatoreValidator.validate(curatore, bindingResult);
         if (!bindingResult.hasErrors()) {
-          	this.curatoreService.inserisci(this.curatoreService.toUpperCase(curatore));
+          	
           	if(idCorrente != null) {
 				this.curatoreService.cancella(this.curatoreService.curatorePerId(idCorrente));
 				this.idCorrente = null;
 			}
-
+          	this.curatoreService.inserisci(this.curatoreService.toUpperCase(curatore));
+            model.addAttribute("curatore", this.curatoreService.tutti());
             return "admin/curatori.html";
         }
         return "admin/curatoreForm.html";
