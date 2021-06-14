@@ -29,6 +29,13 @@ public class CollezioneService {
 	}
 	
 	@Transactional
+	public List<Collezione> tutteDisponibili(Collezione c){
+		List<Collezione> lista = (List<Collezione>)collezioneRepository.findAll();
+		lista.remove(c);
+		return lista;
+	}
+	
+	@Transactional
 	public Collezione collezionePerId(Long id) {
 		Optional<Collezione> optional = collezioneRepository.findById(id);
 		if (optional.isPresent())
@@ -52,8 +59,8 @@ public class CollezioneService {
 		
 	@Transactional
 	public boolean alreadyExists(Collezione collezione) {
-		List<Collezione> studenti = this.collezioneRepository.findByNome(collezione.getNome());
-		if (studenti.size() > 0)
+		List<Collezione> collezioni = this.collezioneRepository.findByNome(collezione.getNome());
+		if (collezioni.size() > 0)
 			return true;
 		else 
 			return false;

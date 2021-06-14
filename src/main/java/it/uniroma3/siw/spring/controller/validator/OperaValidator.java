@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -35,5 +36,10 @@ public class OperaValidator implements Validator{
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void validateModifica(Opera opera, Errors errors) {
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titolo", "required");
+		
 	}
 }

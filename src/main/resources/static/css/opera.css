@@ -38,9 +38,9 @@ p{
 }
 #box2{
 	width:50%;
+	max-height:50vh;
 	align-items: center;
 	margin-top:8%;
-	border:1px solid red;
 }
 img{
 	margin-right: 10%;

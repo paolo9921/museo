@@ -18,13 +18,19 @@
 		<div class="navbar">
 			<a th:href="@{/artisti}" th:text="#{base.artisti}"></a> 
 			<a th:href="@{/collezioni}" th:text="#{base.collezioni}"></a>
-			<a href="/" th:text="#{base.informazioni}"></a>
+			<a th:href="@{/informazioni}" th:text="#{base.informazioni}"></a>
 		</div>
 		
 	</header>
 	
 	<div id="footer" th:fragment="fondo">
-	<a th:href="@{/default}" th:text="#{base.areaAdmin}"></a>
+		<a th:href="@{/default}" th:text="#{base.areaAdmin}"></a>
+		<div>
+				<span th:text="#{info.contatti}"></span><br>
+				<span th:text="#{info.contatti.1}"></span>
+				<span th:text="#{info.contatti.2}"></span>
+		
+		</div>
 	</div>
 	</div>
 </body>

@@ -12,7 +12,7 @@
   		
   		<div class="intestazione">
   			<h2 id="titolo" th:text="*{nome}"></h2>
-  			<h2 th:text="|#{collezione.curatore} *{curatore.nome} *{curatore.cognome}|"></h2>
+  			<h2 th:if="*{curatore}" th:text="|#{collezione.curatore} *{curatore.nome} *{curatore.cognome}|"></h2>
 		</div>
 		
 		
