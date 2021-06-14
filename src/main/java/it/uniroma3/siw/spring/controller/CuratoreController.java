@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.controller.validator.CuratoreValidator;
+import it.uniroma3.siw.spring.model.Collezione;
 import it.uniroma3.siw.spring.model.Curatore;
 import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.service.CuratoreService;
@@ -66,6 +69,9 @@ public class CuratoreController {
     
 	@RequestMapping(value = "/curatori/delete/{id}", method = RequestMethod.GET)
 	public String cancellaCuratore(@PathVariable("id") Long id, Model model) {
+		List<Collezione> collezioni = this.curatoreService.curatorePerId(id).getCollezioni();
+		for (Collezione collezione : collezioni)
+			collezione.setCuratore(null);
 		this.curatoreService.cancella(this.curatoreService.curatorePerId(id));
 		model.addAttribute("curatori",this.curatoreService.tutti());
 		return "admin/curatori.html";

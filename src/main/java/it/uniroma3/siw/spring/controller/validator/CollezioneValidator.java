@@ -25,9 +25,14 @@ public class CollezioneValidator implements Validator{
 
 		if (!errors.hasErrors()) {
 			if (this.collezioneService.alreadyExists((Collezione)o)) {
-				errors.reject("duplicato");
+				errors.reject("collezione.duplicato");
 			}
 		}
+	}
+	
+	public void validateModifica(Object o, Errors errors) {
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
+
 	}
 
 	@Override

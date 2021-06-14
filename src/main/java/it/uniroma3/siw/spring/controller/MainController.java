@@ -13,4 +13,9 @@ public class MainController {
 			return "index";
 	}
 	
+	@RequestMapping(value = "/informazioni",method = RequestMethod.GET)
+	public String info(Model model) {
+		return "informazioni";
+	}
+	
 }

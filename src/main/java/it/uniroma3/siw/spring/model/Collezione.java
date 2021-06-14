@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -24,10 +25,12 @@ public class Collezione {
 	@Column
 	private String stanza;
 	
-	@OneToMany(mappedBy = "collezione", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "collezione")
 	public List<Opera> opere;
 	
-	
+	public Collezione() {
+		this.opere = new ArrayList<>();
+	}
 	public Long getId() {
 		return id;
 	}
@@ -74,6 +77,9 @@ public class Collezione {
 
 	public void setStanza(String stanza) {
 		this.stanza = stanza;
+	}
+	public boolean addOpera(Opera o) {
+		return this.opere.add(o);
 	}
 
 }

@@ -4,17 +4,19 @@
 </head>
 <head>
 <link th:href="@{/css/admin/form.css}" rel="stylesheet" />
-<title th:text="#{opera.title.form}">admin page - collezioni</title>
+<title th:text="#{opera.title.form}">admin page - opere</title>
 </head>
 <body>
 	<div id="container">
 		<header th:replace="fragments/admin_base.html :: header"></header>
 		<div id="main">
 			<div>
-				<h2 id="caption">Aggiungi un nuova opera</h2>
+				<h2 th:text="#{form.opera.caption}" id="caption"></h2>
 			</div>
 			<form th:action="@{/admin/addOpera}" method="POST"
 				th:object="${opera}">
+			<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+				
 
 				<div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -35,7 +37,8 @@
 					<div class="allinea">
 						<strong>Artista:</strong><br> <select
 							name="artistaSelezionato">
-							<option th:each="artista : ${artisti}" th:value="${artista.id}"
+							<option th:if="${opera.artista != null}" th:text="|${opera.artista.nome} ${opera.artista.cognome}" th:value="${opera.artista.id}">>
+							<option th:each="artista : ${altriArtisti}" th:value="${artista.id}"
 								th:text="|${artista.nome} ${artista.cognome}" />
 						</select> <br>
 
@@ -48,12 +51,13 @@
 						<strong>Anno realizzazione:</strong><br> <span><input
 							th:placeholder="Anno" type="text" th:field="*{anno}" /></span>
 					</div>
-
 					<div class="allinea">
 						<strong>Collezione:</strong><br> <select
 							name="collezioneSelezionata">
-							<option th:each="collezione : ${collezioni}"
-								th:value="${collezione.id}" th:text="${collezione.nome}" />
+							<option th:if="${opera.collezione != null}" th:text="${opera.collezione.nome}" th:value="${opera.collezione.id}">
+							<option th:each="collezione : ${altreCollezioni}"
+								th:value="${collezione.id}" th:text="${collezione.nome}" 
+								 />
 						</select>
 					</div>
 				</div>
@@ -74,16 +78,19 @@
 				<!-- riga 3 -->
 
 
-				<div class="riga">
-					<div class="allinea">
-						<span><button id="firstButton" type="submit">Conferma</button></span>
+				<div th:if="${modif == true}" class="allinea">
+							<span ><button class="firstButton" 
+									type="submit" name="modifica" value="modifica" th:text="#{form.conferma}">Conferma</button></span>
 
+						</div>
+						<div th:unless="${modif == true}" class="allinea">
+							<span ><button class="firstButton" 
+									type="submit" th:text="#{form.conferma}">Conferma</button></span>
 
-					</div>
-				</div>
+						</div>
 
 			</form>
-			<a class="indietro" th:href="@{/admin/opere}"><button th:text="#{form.indietro}">
+			<a th:href="@{/admin/opere}"><button class="indietro"th:text="#{form.indietro}">
 					Indietro</button></a>
 
 		</div>
