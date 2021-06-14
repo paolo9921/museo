@@ -23,8 +23,9 @@ caption{
 	
 }
 th{
-
+	font-size: 18px;
 	border-bottom: 1px solid #78ab46;
+	margin-right:20px;
 }
 .primaColonna{
 	width:35%;
@@ -37,6 +38,20 @@ th{
 }
 .colonnaData{
 	width: 15%;
+}
+
+.colonnaTitolo{
+	width:25%;
+}
+.colonnaArtista{
+	width:25%;
+}
+.colonnaCollezione{
+	width:20%;
+}
+.colonnaAnno{
+	width:10%;
+	
 }
 #tornaElenco{
 	width: 250px;
@@ -59,15 +74,22 @@ line-height: 25px;
 #box1{
 	width:40%;
 	margin-left:10%;
+	justify-content: right;
 }
 #ricerca{
-	vertical-align:middle;
+	
 }
 .cercaPer{
 	margin:5px 10px 5px 0px;
-	padding: 5px;
+	
 	max-width: 500px;
 	display: inline-block;
+width:100%;
+text-align: right;
+
+}
+h3{
+	margin:1%;
 }
 form{
 	
@@ -78,10 +100,13 @@ form{
 	font-size:20px;
 	text-shadow: 6px 3px 8px rgba(0,0,0,0.46);
 	padding-right:10px;
+	
 }
-#rigaRicerca{
+#tornaElenco{
 	margin-top:2%;
+
 }
+
 #box2{
 	width:40%;
 	margin-right:10%;

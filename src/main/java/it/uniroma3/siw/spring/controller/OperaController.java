@@ -40,8 +40,18 @@ public class OperaController {
     
     @RequestMapping(value = "/opere", method = RequestMethod.GET)
     public String getOpere(Model model) {
-    		model.addAttribute("opere", this.operaService.tutti());
+    		model.addAttribute("opere", this.operaService.tuttiPerTitolo());
     		return "opere.html";
+    }
+    @RequestMapping(value="/orderCollezione",method=RequestMethod.GET)
+    public String getOperePerCollezione(Model model) {
+    	model.addAttribute("opere", this.operaService.tuttiPerCollezione());
+    	return "opere.html";
+    }
+    @RequestMapping(value="/orderAnno",method=RequestMethod.GET)
+    public String getOperePerAnno(Model model) {
+    	model.addAttribute("opere", this.operaService.tuttiPerAnno());
+    	return "opere.html";
     }
     
     @RequestMapping(value = "/opera/{id}", method = RequestMethod.GET)
@@ -131,5 +141,40 @@ public class OperaController {
 		model.addAttribute("opere",this.operaService.tutti());
 		return "admin/opere.html";
 	}
-    
+	
+	/*		RICERCA		*/
+	
+	@RequestMapping(value = "/findTitolo",method = RequestMethod.GET)
+    public String cercaPerTitolo(@RequestParam("titoloOpera") String titolo, Model model){
+    	if(titolo.equals("")) {
+    		model.addAttribute("opere",this.operaService.tutti());
+    	}else {
+    		
+    		model.addAttribute("opere", this.operaService.operaPerTitolo(titolo));
+    	}
+    	
+    	return "opere.html";
+    }
+	@RequestMapping(value = "/findAutore",method = RequestMethod.GET)
+	public String cercaPerAutore(@RequestParam("nomeAutore") String nome, Model model){
+		if(nome.equals("")) {
+			model.addAttribute("opere",this.operaService.tutti());
+		}else {
+			
+			model.addAttribute("opere", this.operaService.operePerArtista(this.artistaService.artistaPerCognome(nome)));
+		}
+		
+		return "opere.html";
+	}
+	@RequestMapping(value = "/findCollezione",method = RequestMethod.GET)
+	public String cercaPerCollezione(@RequestParam("nomeCollezione") String nome, Model model){
+		if(nome.equals("")) {
+			model.addAttribute("opere",this.operaService.tutti());
+		}else {
+			
+			model.addAttribute("opere", this.operaService.operePerCollezione(this.collezioneService.collezionePerNome(nome)));
+		}
+		
+		return "opere.html";
+	}
 }

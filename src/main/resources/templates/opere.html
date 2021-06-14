@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/elenco.css}" rel="stylesheet" />
+<title>artisti</title>
+</head>
+<body>
+	<div id="container">
+		<header th:replace="fragments/base.html :: header"></header>
+		<div id="main">
+
+
+			<table align="center" class="table-ext">
+				<caption th:text="#{opere.table.caption}">ELENCO ARTSTI</caption>
+				<thead>
+					<tr>
+						<th class="colonnaTitolo" th:text="#{opere.table.title}"></th>						
+						<th class="colonnaArtista" th:text="#{opere.autore}"></th>
+						<th class="colonnaCollezione" th:text="#{opere.collezione}"></th>
+						<th class="colonnaAnno"th:text="#{opere.anno}"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td colspan="4">
+							<div class="divinterno">
+								<table align="center" class="table-int">
+									<tr th:each="opera : ${opere}">
+										<td class="colonnaTitolo"><a
+											th:href="@{'/opera' + '/' + ${opera.id}}"
+											th:text="${opera.titolo}"></a></td>
+											
+										<td  class="colonnaArtista" >										
+										<a	th:if="${opera.artista}" th:href="@{'/artista' + '/' + ${opera.artista?.id}}"
+											th:text="|${opera.artista.nome} ${opera.artista.cognome}|"></a>
+										<span th:unless="${opera.artista}" th:text="#{artista.sconosciuto}"></span></td>
+											
+										
+										
+										<td class="colonnaCollezione" th:text="${opera.collezione.nome}"></td>
+										<td class="colonnaAnno" th:text="${opera.anno}"></td>
+
+									</tr>
+								</table>
+								<!--Table-int-->
+							</div>
+						</td>
+						<!--/colspan tabella ext-->
+					</tr>
+				</tbody>
+			</table>
+			<!--/table-ext -->
+			<div id="contenitore">
+				<div id="box1">
+				<h3 th:text="#{searchBy}"></h3>
+					<div id="ricerca">
+
+						<!-- cerca per titolo -->
+						<form th:action="@{/findTitolo}" method="GET">
+							<div class="cercaPer">
+								<span class="cerca" th:text="#{search.title}">Cerca per
+									nome: </span><input th:name="titoloOpera" type="text"
+									autofocus="autofocus" placeholder="titolo da cercare">
+								<button type="submit">Cerca</button>
+							</div>
+						</form>
+						
+						<!-- cerca per autore -->
+						<form th:action="@{/findAutore}" method="GET">
+						<div class="cercaPer">
+							<span class="cerca" th:text="#{search.autore}">Cerca per
+								nazione: </span><input th:name="nomeAutore" type="text"
+								placeholder="artista da cercare">
+							<button type="submit" th:text="#{search.button}">Cerca</button>
+							</div>
+						</form>
+						
+						<!-- cerca per collezione -->
+						<form th:action="@{/findCollezione}" method="GET">
+						<div class="cercaPer">
+							<span class="cerca" th:text="#{search.collezione}"></span><input th:name="nomeCollezione" type="text"
+								placeholder="collezione da cercare">
+							<button type="submit" th:text="#{search.button}">Cerca</button>
+							</div>
+						</form>
+						<br> <a th:href="@{/opere}"><button id="tornaElenco"
+								th:text="#{search.back}">Torna all'elenco completo</button></a>
+					</div>
+				</div><!-- end box1 -->
+
+
+					<div id="box2">
+						<h3 th:text="#{orderBy}"></h3>
+						<div>
+							<form th:action="@{/opere}" method="GET">
+								<button type="submit" th:text="#{order.title}">Nomeee</button>
+							</form>
+							<form th:action="@{/orderCollezione}" method="GET">
+								<button type="submit" th:text="#{order.collezione}">Nomeee</button>
+							</form>
+							<form th:action="@{/orderAnno}" method="GET">
+								<button type="submit" th:text="#{order.anno}">Nomeee</button>
+							</form>
+							<br>
+						</div>
+
+					</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>
+

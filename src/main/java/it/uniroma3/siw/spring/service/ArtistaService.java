@@ -102,4 +102,9 @@ public class ArtistaService {
 		
 		return artista;
 	}
+
+
+	public Artista artistaPerCognome(String nome) {
+		return this.artistaRepository.findByCognome(nome);
+	}
 }

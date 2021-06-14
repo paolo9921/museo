@@ -26,4 +26,6 @@ public interface ArtistaRepository extends CrudRepository<Artista, Long>{
 
 	public List<Artista> findByOrderByDataMorteAsc();
 
+	public Artista findByCognome(String nome);
+
 }

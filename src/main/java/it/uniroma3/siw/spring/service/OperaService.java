@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import it.uniroma3.siw.spring.model.Artista;
 import it.uniroma3.siw.spring.model.Collezione;
 import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.model.Opera;
@@ -28,6 +29,18 @@ public class OperaService {
 	@Transactional
 	public List<Opera> tutti() {
 		return (List<Opera>) operaRepository.findAll();
+	}
+	@Transactional
+	public List<Opera> tuttiPerTitolo() {
+		return (List<Opera>) operaRepository.findByOrderByTitoloAsc();
+	}
+	@Transactional
+	public List<Opera> tuttiPerAnno() {
+		return (List<Opera>) operaRepository.findByOrderByAnnoAsc();
+	}
+	@Transactional
+	public List<Opera> tuttiPerCollezione() {
+		return (List<Opera>) operaRepository.findByOrderByCollezioneAsc();
 	}
 
 	@Transactional
@@ -63,6 +76,20 @@ public class OperaService {
 		opera.setDescrizione(StringUtils.capitalize(opera.getDescrizione()));
 		
 		return opera;
+	}
+
+	@Transactional
+	public List<Opera> operaPerTitolo(String titolo) {
+		return operaRepository.findByTitolo(titolo);
+	}
+	@Transactional
+	public List<Opera> operePerArtista(Artista a) {
+		return operaRepository.findAllByArtista(a);
+	}
+
+	public List<Opera> operePerCollezione(Collezione c) {
+		
+		return operaRepository.findAllByCollezione(c);
 	}
 
 }

@@ -9,7 +9,9 @@ import it.uniroma3.siw.spring.model.Collezione;
 
 public interface CollezioneRepository extends CrudRepository<Collezione,Long>{
 
-	List<Collezione> findByNome(String nome);
+	List<Collezione> findAllByNome(String nome);
+	
+	Collezione findByNome(String nome);
 	
 	void deleteById(Long id);
 
