@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head"></head>
+<head>
+<link th:href="@{/css/home.css}" rel="stylesheet" />
+<title th:text="#{info.title}"></title>
+</head>
+
+<body>
+	<div id="container">
+		<header th:replace="fragments/base.html :: header"></header>
+		<div id="main">
+			<h1 id="titolo" th:text="#{info.caption}"></h1>
+			<div class="contenuto" id="info">
+
+				<div id="boxUno">
+
+					<h2 th:text="#{info.orario}"></h2>
+					<span class="info" th:text="#{info.orario.1}"></span><br> 
+					<span class="info" th:text="#{info.orario.2}"></span>
+
+				</div>
+				
+				<div id="boxDue">
+					<div class="gruppo">
+
+						<h2 th:text="#{info.biglietti}"></h2>
+						<span class="info" th:text="#{info.biglietti.1}"></span>
+					</div>
+
+					<h2 th:text="#{info.contatti}"></h2>
+					<span class="info" th:text="#{info.contatti.1}"></span><br> 
+					<span class="info" th:text="#{info.contatti.2}"></span>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo"></footer>
+</body>
+</html>
