@@ -1,11 +1,13 @@
-html, body{height: 100%;}
+html, body {
+	height: 100%;
+}
 
-body{
+body {
 	margin: 0;
 	background: url("/images/sfondoHome.jpg")
 }
 
-.contenuto{
+.contenuto {
 	margin-top: 2%;
 	display: flex;
 	flex-flow: row nowrap;
@@ -13,9 +15,44 @@ body{
 	align-items: center;
 	height: 60%;
 }
-#box1{
+.contenuto#info{
+	margin-top:1%;
+	margin-right:5%;
+	font-size: 3vh;
+}
+#box1 {
 	background-color: green;
 	width: 10%;
 	height: 200px;
 }
 
+#titolo {
+	text-align: center;
+}
+
+#boxUno {
+	text-align: center;
+	width: 42%;
+}
+
+#boxDue {
+	
+	text-align: center;
+	width: 42%;
+	margin-right:5%;
+}
+.gruppo{
+	margin-bottom:40px;
+}
+.riga {
+	text-align: center;
+}
+
+.allinea {
+	padding: 1%;
+	max-width: 500px;
+	display: inline-block;
+}
+.info{
+	font-size:3.5vh;
+}

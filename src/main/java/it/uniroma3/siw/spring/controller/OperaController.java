@@ -34,8 +34,8 @@ public class OperaController {
 	private ArtistaService artistaService;
     @Autowired
 	private CollezioneService collezioneService;
-
-	private Long idCorrente;
+    
+    private String imgSourceCorrente;
     
     
     @RequestMapping(value = "/opere", method = RequestMethod.GET)
@@ -60,8 +60,10 @@ public class OperaController {
 	@RequestMapping(value="/admin/addOpera", method = RequestMethod.GET)
 	public String addAdminOpera(Model model) {
 		model.addAttribute("opera", new Opera());
-		model.addAttribute("artisti",this.artistaService.tutti());
-		model.addAttribute("collezioni",this.collezioneService.tutti());
+		model.addAttribute("altriArtisti",this.artistaService.tuttiDisponibili(null));
+		model.addAttribute("altreCollezioni",this.collezioneService.tutteDisponibili(null));
+		model.addAttribute("modif", false);
+
 		return "admin/operaForm.html";
 	}
 
@@ -73,10 +75,7 @@ public class OperaController {
         	opera.setArtista(this.artistaService.artistaPerId(artistaSelezionato));
         	opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
            	this.operaService.inserisci(this.operaService.toUpperCase(opera));
-           	if(idCorrente != null) {
-				this.operaService.cancella(this.operaService.operaPerId(idCorrente));
-				this.idCorrente = null;
-			}
+
             model.addAttribute("opere", this.operaService.tutti());
             return "admin/opere.html";
         }
@@ -85,13 +84,43 @@ public class OperaController {
         return "admin/operaForm.html";
     }
     
+    @RequestMapping(value = "/admin/addOpera", method = RequestMethod.POST, params="modifica")
+    public String modificaOpera(@RequestParam Long artistaSelezionato,@RequestParam Long collezioneSelezionata,
+    		@ModelAttribute("opera") Opera opera, Model model, BindingResult bindingResult) {
+    	logger.debug("*************MODIFICA. ID OPERA= "+opera.getId());
+    	this.operaValidator.validateModifica(opera, bindingResult);
+    	if (!bindingResult.hasErrors()) {
+    		if(artistaSelezionato != null)
+    			opera.setArtista(this.artistaService.artistaPerId(artistaSelezionato));
+    		if(collezioneSelezionata != null)
+    			opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
+    		this.operaService.inserisci(this.operaService.toUpperCase(opera));
+
+    		if(this.operaService.operaPerId(opera.getId()).getImgSource().equals("") && imgSourceCorrente != null) {
+    			opera.setImgSource(imgSourceCorrente);
+    			logger.debug("************* HO IMPOSTATO IMGSOURCE****"+opera.getImgSource());
+        		this.operaService.inserisci(this.operaService.toUpperCase(opera));
+
+    			imgSourceCorrente=null;
+    		}
+    		
+
+    		model.addAttribute("opere", this.operaService.tutti());
+    		return "admin/opere.html";
+    	}
+    	model.addAttribute("artisti",this.artistaService.tutti());
+    	model.addAttribute("collezioni",this.collezioneService.tutti());
+    	return "admin/operaForm.html";
+    }
+    
 	@RequestMapping(value = "/opere/modifica/{id}", method = RequestMethod.GET)
 	public String modificaOpera(@PathVariable("id") Long id, Model model) {
-		//salvo l'id in una variabile locale per poter eliminare l'opera una volta aggiunta quella nuova (modificata)
-		this.idCorrente = id;
+		this.imgSourceCorrente = this.operaService.operaPerId(id).getImgSource();
 		model.addAttribute("opera",this.operaService.operaPerId(id));
-		model.addAttribute("artisti",this.artistaService.tutti());
-		model.addAttribute("collezioni",this.collezioneService.tutti());
+		model.addAttribute("altriArtisti",this.artistaService.tuttiDisponibili(this.operaService.operaPerId(id).getArtista()));
+		//altreCollezioni è la lista di tutte le collezioni senza quella di cui l'opera fa parte
+		model.addAttribute("altreCollezioni",(this.collezioneService.tutteDisponibili(this.operaService.operaPerId(id).getCollezione())));
+		model.addAttribute("modif", true);
 		
 		return "admin/operaForm.html";
 	}

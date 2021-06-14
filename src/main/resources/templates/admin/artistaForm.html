@@ -4,7 +4,8 @@
 </head>
 <head>
 <link th:href="@{/css/admin/form.css}" rel="stylesheet" />
-<title th:text="#{artista.title.form}">admin page - aggiungi artista</title>
+<title th:text="#{artista.title.form}">admin page - aggiungi
+	artista</title>
 </head>
 <body>
 	<div id="container">
@@ -14,8 +15,10 @@
 				<h2 id="caption" th:text="#{form.artista.caption}">Aggiungi un
 					nuovo artista</h2>
 			</div>
-			<form th:action="@{/admin/modificaArtista}" method="POST"
+			<form th:action="@{/admin/addArtista}" method="POST"
 				th:object="${artista}">
+				<input type="hidden" th:field="*{id}" th:value="*{id}" />
+
 				<div th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
@@ -88,19 +91,22 @@
 					</div>
 					<div class="allinea">
 						<br> <strong th:text="#{form.fotoArtista}">Foto
-							dell'artista:</strong><br> <input type="file" th:field="*{imgSource}" />
+							dell'artista:</strong><br> <input type="file" th:value="*{imgSource}"
+							th:field="*{imgSource}" />
 					</div>
 				</div>
 				<!-- riga 4 -->
 
 
 
+				<div th:if="${modif == true}" class="allinea">
+					<span><button class="firstButton" type="submit"
+							name="modifica" value="modifica" th:text="#{form.conferma}">Conferma</button></span>
 
-				<div class="riga">
-
-					<div class="allinea">
-						<span><button type="submit" th:text="#{form.conferma}">Conferma</button></span>
-					</div>
+				</div>
+				<div th:unless="${modif == true}" class="allinea">
+					<span><button class="firstButton" type="submit"
+							th:text="#{form.conferma}">Conferma</button></span>
 
 				</div>
 
@@ -108,8 +114,8 @@
 
 
 			</form>
-			<a class="indietro" th:href="@{/admin/artisti}"><button th:text="#{form.indietro}">
-					Indietro</button></a>
+			<a class="indietro" th:href="@{/admin/artisti}"><button
+					th:text="#{form.indietro}">Indietro</button></a>
 		</div>
 	</div>
 	<footer th:replace="fragments/admin_base.html :: fondo"></footer>

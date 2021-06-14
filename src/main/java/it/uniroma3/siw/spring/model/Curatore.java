@@ -55,7 +55,7 @@ public class Curatore {
 
 	public Curatore() {};
 
-	public List<Collezione> getOrder() { return collezioni; }
+	public List<Collezione> getCollezioni() { return collezioni; }
 
 	public void setCollezione(List<Collezione> collezione) { this.collezioni = collezione; }
 

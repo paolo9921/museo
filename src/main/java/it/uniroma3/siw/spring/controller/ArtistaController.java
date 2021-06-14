@@ -2,6 +2,8 @@ package it.uniroma3.siw.spring.controller;
 
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.controller.validator.ArtistaValidator;
 import it.uniroma3.siw.spring.model.Artista;
+import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.service.ArtistaService;
 
 @Controller
@@ -31,6 +34,8 @@ public class ArtistaController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private Long idCorrente;
+
+	private String imgSourceCorrente;
 
         
     
@@ -78,22 +83,61 @@ public class ArtistaController {
 	
     @RequestMapping(value="/admin/addArtista", method = RequestMethod.GET)
     public String addArtista(Model model) {
-    	
-    	model.addAttribute("artista", new Artista());
-        return "admin/artistaForm.html";
+      	model.addAttribute("artista", new Artista());
+      	model.addAttribute("modif", false);
+      	return "admin/artistaForm.html";
     }
 	
     @RequestMapping(value = "/admin/addArtista", method = RequestMethod.POST)
     public String newArtista(@ModelAttribute("artista") Artista artista, 
     									Model model, BindingResult bindingResult) {
-    	this.artistaValidator.validate(artista, bindingResult);
+    	this.artistaValidator.validateModifica(artista, bindingResult);
         if (!bindingResult.hasErrors()) {
-	     
-	    	this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
-            model.addAttribute("artisti", this.artistaService.tutti());
+			this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+
+			/*if(idCorrente != null) {
+				artista.setId(idCorrente);
+				//this.artistaService.cancella(this.artistaService.artistaPerId(idCorrente));
+				this.idCorrente = null;
+			}			
+			
+			this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+			logger.debug("************* HO INSERITO DOPO MODIFICA**************************"+this.artistaService.artistaPerId(artista.getId()).getImgSource()+"CIAO");
+			
+			if(this.artistaService.artistaPerId(artista.getId()).getImgSource().equals("")) {
+				logger.debug("************* ORA IMPOSTO IMGSOURCE *"+ imgSourceCorrente);
+				artista.setImgSource(imgSourceCorrente);
+				logger.debug("************* HO IMPOSTATO IMGSOURCE****"+artista.getImgSource());
+				this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+				imgSourceCorrente=null;
+			}*/
+			
+			model.addAttribute("artisti", this.artistaService.tutti());
             return "admin/artisti.html";
         }
         return "admin/artistaForm.html";
+    }
+    @RequestMapping(value = "/admin/addArtista", method = RequestMethod.POST, params="modifica")
+    public String modificaArtista(@ModelAttribute("artista") Artista artista, 
+    		Model model, BindingResult bindingResult) {
+    	this.artistaValidator.validateModifica(artista, bindingResult);
+    	if (!bindingResult.hasErrors()) {			
+    		
+    		this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+    		logger.debug("************* HO INSERITO DOPO MODIFICA**************************"+this.artistaService.artistaPerId(artista.getId()).getImgSource()+"CIAO");
+    		/*
+    		if(this.artistaService.artistaPerId(artista.getId()).getImgSource().equals("")) {
+    			logger.debug("************* ORA IMPOSTO IMGSOURCE *"+ imgSourceCorrente);
+    			artista.setImgSource(imgSourceCorrente);
+    			logger.debug("************* HO IMPOSTATO IMGSOURCE****"+artista.getImgSource());
+    			this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
+    			imgSourceCorrente=null;
+    		}*/
+    		
+    		model.addAttribute("artisti", this.artistaService.tutti());
+    		return "admin/artisti.html";
+    	}
+    	return "admin/artistaForm.html";
     }
     
     /*		MODIFICA - ELIMINA		*/
@@ -101,29 +145,19 @@ public class ArtistaController {
 	public String modificaArtista(@PathVariable("id") Long id, Model model) {
 		//salvo l'id in una variabile locale per poter eliminare la collezione una volta aggiunta quella nuova (modificata)
 		this.idCorrente = id;
+		this.imgSourceCorrente = this.artistaService.artistaPerId(id).getImgSource();
 		model.addAttribute("artista",this.artistaService.artistaPerId(id));
-		
+		model.addAttribute("modif",true);
 		return "admin/artistaForm.html";
 	}
-    @RequestMapping(value = "/admin/modificaArtista", method = RequestMethod.POST)
-    public String updateArtista(@ModelAttribute("artista") Artista artista, 
-    									Model model, BindingResult bindingResult) {
-    	this.artistaValidator.validateModifica(artista, bindingResult);
-        if (!bindingResult.hasErrors()) {
-			if(idCorrente != null) {
-				this.artistaService.cancella(this.artistaService.artistaPerId(idCorrente));
-				this.idCorrente = null;
-			}
-	    	this.artistaService.inserisci(this.artistaService.toUpperCase(artista));
-            model.addAttribute("artisti", this.artistaService.tutti());
-            return "admin/artisti.html";
-        }
-        return "admin/artistaForm.html";
-    }
+    
    	
 
 	@RequestMapping(value = "/artisti/delete/{id}", method = RequestMethod.GET)
 	public String cancellaArtista(@PathVariable("id") Long id, Model model) {
+		List<Opera> opere = this.artistaService.artistaPerId(id).getOpere();
+		for (Opera opera : opere)
+			opera.setArtista(null);
 		this.artistaService.cancella(this.artistaService.artistaPerId(id));
 		model.addAttribute("artisti",this.artistaService.tutti());
 		return "admin/artisti.html";

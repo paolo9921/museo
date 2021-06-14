@@ -3,7 +3,7 @@
 <head th:replace="fragments/base.html :: head"></head>
 <head>
 <link th:href="@{/css/elenco.css}" rel="stylesheet" />
-<title>collezioni</title>
+<title th:text="#{collezioni.title}">collezioni</title>
 </head>
 <body>
 <div id="container">
@@ -30,7 +30,8 @@
 									
 									<td class="primaColonna"><a
 										th:href="@{/collezione/{id}(id=${collezione.id})}" th:text="${collezione.nome}"></a></td>
-									<td class ="secondaColonna" th:text="|${collezione.curatore.nome} ${collezione.curatore.cognome}|"></td>
+									<td class ="secondaColonna" th:if="${collezione.curatore}" th:text="|${collezione.curatore.nome} ${collezione.curatore.cognome}|"></td>
+									<td th:unless="${collezione.curatore}" th:text="#{curatore.nessuno}">
 									<td th:text="${collezione.stanza}"></td>
 									
 

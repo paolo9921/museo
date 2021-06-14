@@ -55,7 +55,7 @@ public class AuthenticationController {
     		return "login";
     	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "/admin/admin_home";
+            return "admin/admin_home";
         }
         return "index";
     }

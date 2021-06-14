@@ -30,6 +30,12 @@ public class ArtistaService {
 	public List<Artista> tutti() {
 		return (List<Artista>) artistaRepository.findAll();
 	}
+	@Transactional
+	public List<Artista> tuttiDisponibili(Artista a){
+		List<Artista> lista = (List<Artista>)artistaRepository.findAll();
+		lista.remove(a);
+		return lista;
+	}
 	
 	@Transactional
 	public List<Artista> tuttiPerNome() {

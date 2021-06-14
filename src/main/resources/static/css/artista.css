@@ -51,6 +51,7 @@ li{
 	margin-left:5%;
 }
 #opera{
+
 	display:grid;
 	margin:5%;
 	font-size: 18px;
@@ -75,6 +76,8 @@ li{
 
 
 img{
+	max-width:300px;
+	max-height:200px;
 	box-shadow: 7px 7px 10px 3px  rgba(120,171,70,0.3);
 	border-radius:10px;
 }

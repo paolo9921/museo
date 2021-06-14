@@ -38,6 +38,11 @@ public class OperaService {
 		else 
 			return null;
 	}
+	
+	@Transactional
+	public List<Opera> tutteSenzaCollezione(){
+		return (List<Opera>) operaRepository.findAllSenzaCollezione();
+	}
 
 	@Transactional
 	public void cancella(Opera opera) {
