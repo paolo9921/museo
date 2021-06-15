@@ -7,61 +7,71 @@
 </head>
 
 <body>
-<div id="container">
-	<header th:replace="fragments/admin_base.html :: header"></header>
-	<div id="main">
+	<div id="container">
+		<header th:replace="fragments/admin_base.html :: header"></header>
+		<div id="main">
+
+
+			<table align="center" class="table-externa">
+				<caption th:text="#{curatori.table.caption}">ELENCO ARTSTI</caption>
+				<thead>
+					<tr>
+						<th class="colonnaNome" th:text="#{artisti.table.name}">NOME</th>
+						<th class="email" th:text="#{curatori.email}"></th>
+						<th class="telefono" th:text="#{curatori.telefono}"></th>
+						<th class="nascita" th:text="#{curatori.luogoNascita}"></th>
+						<th class="data" th:text="#{curatori.dataNascita}"></th>
+						
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td colspan="7">
+							<div class="divinterno">
+								<table align="center" class="table-int">
+									<tr th:each="curatore : ${curatori}">
+										<td class="colonnaNome"><strong th:text="${curatore.nome}+' '+${curatore.cognome}"></strong></td>
+
+										<td class="email"><span th:text="${curatore.email}"></span></td>
+										
+										<td class="telefono"><span th:text="${curatore.numeroTelefono}"></span></td>
+										
+										<td class="nascita"><span
+											th:text="${curatore.luogoNascita}"></span></td>
+										<td class="data"><span th:text="${curatore.dataNascita}"></span></td>
+										
+										<td class="opzioniCollezioni"><a
+											th:href="@{'/curatori/modifica'+'/'+${curatore.id}}"
+											th:text="#{admin.modifica}">modifica</a></td>
+										<td class="opzioniCollezioni"><a
+											th:href="@{'/curatori/delete'+'/'+${curatore.id}}"
+											th:text="#{admin.elimina}">elimina</a></td>
+
+									</tr>
+								</table>
+								<!--Table-int-->
+							</div>
+						</td>
+						<!--/colspan tabella ext-->
+					</tr>
+				</tbody>
+			</table>
 
 
 
 
+			
+			<div>
+				<form th:action="@{/admin/addCuratore}">
+					<button type="submit" th:text="#{button.addCuratore}"></button>
+				</form>
+			</div>
 
-
-
-		<table align="center" class="table-ext">
-			<caption th:text="#{curatori.table.caption}">ELENCO
-				CURATORI</caption>
-			<thead>
-				<tr>
-					<th id="colonnaNome" th:text="#{artisti.table.name}">NOME</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr>
-					<td colspan="3">
-						<div class="divinterno">
-							<table align="center" class="table-int">
-								<tr th:each="curatore : ${curatori}">
-									<td id="colonnaNome"><a
-										th:href="@{'/curatore' + '/' + ${curatore.id}}"
-										th:text="|${curatore.nome} ${curatore.cognome}"></a></td>
-									<td class="opzioniCollezioni"><a
-										th:href="@{'/curatori/modifica'+'/'+${curatore.id}}"
-										th:text="#{admin.modifica}">modifica</a></td>
-									<td class="opzioniCollezioni"><a
-										th:href="@{'/curatori/delete'+'/'+${curatore.id}}"
-										th:text="#{admin.elimina}">elimina</a></td>
-
-								</tr>
-							</table>
-							<!--Table-int-->
-						</div>
-					</td>
-					<!--/colspan tabella ext-->
-				</tr>
-			</tbody>
-		</table>
-		<!--/table-ext-->
-<div>
-			<form th:action="@{/admin/addCuratore}">
-				<button type="submit" th:text="#{button.addCuratore}"></button>
-			</form>
 		</div>
-
 	</div>
-</div>
 	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
 </body>
 </html>

@@ -33,6 +33,7 @@ public class CuratoreController {
 	@RequestMapping(value="/admin/addCuratore", method = RequestMethod.GET)
 	public String addCuratore(Model model) {
 		model.addAttribute("curatore", new Curatore());
+		model.addAttribute("modif",false);
 		return "admin/curatoreForm.html";
 	}
 	
@@ -57,13 +58,29 @@ public class CuratoreController {
         }
         return "admin/curatoreForm.html";
     }
+    @RequestMapping(value = "/admin/addCuratore", method = RequestMethod.POST, params="modifica")
+    public String modificaCuratore(@ModelAttribute("curatore") Curatore curatore, Model model, BindingResult bindingResult) {
+    	this.curatoreValidator.validateModifica(curatore, bindingResult);
+        if (!bindingResult.hasErrors()) {
+          	
+          /*	if(idCorrente != null) {
+          		curatore.setId(idCorrente);
+  				this.idCorrente = null;
+			}*/
+          	this.curatoreService.inserisci(this.curatoreService.toUpperCase(curatore));
+            model.addAttribute("curatori", this.curatoreService.tutti());
+            return "admin/curatori.html";
+        }
+        return "admin/curatoreForm.html";
+    }
     
 	@RequestMapping(value = "/curatori/modifica/{id}", method = RequestMethod.GET)
 	public String modificaCollezione(@PathVariable("id") Long id, Model model) {
 		//salvo l'id in una variabile locale per poter eliminare la collezione una volta aggiunta quella nuova (modificata)
-		this.idCorrente = id;
+		//this.idCorrente = id;
 		model.addAttribute("curatore",this.curatoreService.curatorePerId(id));
-		
+		model.addAttribute("modif",true);
+
 		return "admin/curatoreForm.html";
 	}
     

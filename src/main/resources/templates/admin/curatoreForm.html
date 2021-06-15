@@ -7,42 +7,47 @@
 </head>
 
 <body>
-<div id="container">
-	<header th:replace="fragments/admin_base.html :: header"></header>
-	<div class="main">
-		<h2 id="caption" th:text="#{form.curatore.caption}">Aggiungi un nuovo curatore</h2>
-		<form th:action="@{/admin/addCuratore}" method="POST" th:object=${curatore}>
+	<div id="container">
+		<header th:replace="fragments/admin_base.html :: header"></header>
+		<div class="main">
+			<h2 id="caption" th:text="#{form.curatore.caption}">Aggiungi un
+				nuovo curatore</h2>
+			<form th:action="@{/admin/addCuratore}" method="POST"
+				th:object=${curatore}>
+				<input type="hidden" th:field="*{id}" th:value="*{id}"/>
 
-	<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		
-		<div class="riga">
-			<div class="allinea">
-			<span class="errore" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-			</div>
-			<div class="allinea">
-			<span class="errore" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-			</div>
-		</div>
-
-			<div class="riga">
-				<div class="allinea">
-					<strong th:text="#{form.nome}">Nome:</strong><br> <input
-						type="text" name="nome" autofocus="autofocus"
-						placeholder="Nome:">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
 
-
-				<div class="allinea">
-					<strong th:text="#{form.cognome}">Cognome:</strong><br> <input
-						type="text" class="input" name="cognome" autofocus="autofocus"
-						placeholder="Cognome:">
+				<div class="riga">
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('nome')}"
+							th:errors="*{nome}"></span>
+					</div>
+					<div class="allinea">
+						<span class="errore" th:if="${#fields.hasErrors('cognome')}"
+							th:errors="*{cognome}"></span>
+					</div>
 				</div>
 
-			</div>
-			
-			<div class="riga">
+				<div class="riga">
+					<div class="allinea">
+						<strong th:text="#{form.nome}">Nome:</strong><br> <input
+							type="text" name="nome" autofocus="autofocus" placeholder="Nome:"
+							th:field="*{nome}">
+					</div>
+
+
+					<div class="allinea">
+						<strong th:text="#{form.cognome}">Cognome:</strong><br> <input
+							type="text" class="input" name="cognome" autofocus="autofocus"
+							placeholder="Cognome:" th:field="*{cognome}">
+					</div>
+
+				</div>
+
+				<div class="riga">
 
 					<div class="allinea">
 						<br> <strong th:text="#{form.dataNascita}">Data di
@@ -54,38 +59,40 @@
 							Nascita:</strong><br> <input type="text" th:field="*{luogoNascita}"
 							placeholder="Citta natale" />
 					</div>
-			</div>
-
-			<div class="riga">
-
-				<div class="allinea">
-					<strong th:text="#{form.email}">Email:</strong><br> <input
-						type="text" class="input" name="email" autofocus="autofocus"
-						placeholder="Email ">
 				</div>
 
-				<div class="allinea">
-					<strong th:text="#{form.numeroTelefono}">Numero di
-						telefono:</strong><br> <input type="text" class="input"
-						name="numeroTelefono" autofocus="autofocus"
-						placeholder="Numero di telefono: ">
+				<div class="riga">
+
+					<div class="allinea">
+						<strong th:text="#{form.email}">Email:</strong><br> <input
+							type="text" class="input" name="email" autofocus="autofocus"
+							placeholder="Email " th:field="*{email}">
+					</div>
+
+					<div class="allinea">
+						<strong th:text="#{form.numeroTelefono}">Numero di
+							telefono:</strong><br> <input type="text" class="input"
+							name="numeroTelefono" autofocus="autofocus"
+							placeholder="Numero di telefono: " th:field="*{numeroTelefono}">
+					</div>
 				</div>
-			</div>
 
 
-			<div class="riga">
+				<div th:if="${modif == true}" class="allinea">
+					<span><button class="firstButton" type="submit"
+							name="modifica" value="modifica" th:text="#{form.conferma}">Conferma</button></span>
 
-				<div class="allinea">
-					<span><button id="firstButton" type="submit"
+				</div>
+				<div th:unless="${modif == true}" class="allinea">
+					<span><button class="firstButton" type="submit"
 							th:text="#{form.conferma}">Conferma</button></span>
-							
-							
+
 				</div>
-			</div>
-			
-		</form>
-		<a class="indietro" th:href="@{/admin/curatori}"><button th:text="#{form.indietro}"> Indietro</button></a> 
-	</div>
+
+			</form>
+			<a  th:href="@{/admin/curatori}"><button class="indietro"
+					th:text="#{form.indietro}">Indietro</button></a>
+		</div>
 	</div>
 	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
 </body>

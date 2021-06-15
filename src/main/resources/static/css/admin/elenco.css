@@ -14,6 +14,15 @@ body{
 	margin-bottom: 20px;	
 
 }
+.table-externa{
+	width: 90%;
+	border-top: 2px solid #424242;
+	border-bottom: 2px solid #424242;
+	border-spacing: 5px;
+	border-collapse: separate;
+	
+	margin-bottom: 20px;	
+}
 caption{
 	font-size: 24px;
 	border-bottom: 1px solid #424242;
@@ -28,18 +37,33 @@ th{
 	width: 45%;
 }
 .divinterno{
+	
 	max-height: 40vh;
 	overflow: auto;
 	width: 100%;
 }
 .table-int {
-width:90%; 
+width:100%; 
 }
-
+.table-interna{
+	width:100%;
+}
 .table-int td {
-padding-right:10%;
-font-size: 19px;
+
+font-size: 18px;
 line-height: 25px;
+
+text-align:center;
+
+}
+.table-interna td {
+
+font-size: 18px;
+line-height: 25px;
+
+text-align:center;
+width:100%;
+
 }
 button {
 	width:200px;
@@ -57,4 +81,19 @@ button:hover{
 }
 .indietro{
 	margin-bottom: 20px;
+}
+.colonnaNome{
+	width:20%;
+}
+.email{
+	width:18%;
+}
+.telefono{
+	width:12%;
+}
+.nascita{
+	width:12%;
+}
+.data{
+	width:12%;
 }

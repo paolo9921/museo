@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames= {"nome","cognome","email"}))
@@ -36,6 +38,7 @@ public class Curatore {
 	private String numeroTelefono;
 	
 	@Column 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataNascita;
 	
 	@Column 
