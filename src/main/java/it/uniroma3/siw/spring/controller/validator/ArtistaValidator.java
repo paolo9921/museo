@@ -29,7 +29,7 @@ public class ArtistaValidator implements Validator{
 			logger.debug("confermato: valori non nulli");
 			if (this.artistaService.alreadyExists((Artista)o)) {
 				logger.debug("e' un duplicato");
-				errors.reject("duplicato");
+				errors.reject("artista.duplicato");
 			}
 		}
 	}

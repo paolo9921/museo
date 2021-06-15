@@ -41,6 +41,8 @@ public class Curatore {
 	@Column 
 	private String luogoNascita;
 	
+	
+
 	@Column
 	@OneToMany(mappedBy = "curatore")
 	//@OrderBy("creation time asc")
@@ -86,5 +88,15 @@ public class Curatore {
 	public LocalDate getDataNascita() { return dataNascita; }
 
 	public void setDataNascita(LocalDate dateOfBirth) { this.dataNascita = dateOfBirth; }
-	
+	public String getLuogoNascita() {
+		return luogoNascita;
+	}
+
+	public void setLuogoNascita(String luogoNascita) {
+		this.luogoNascita = luogoNascita;
+	}
+
+	public void setCollezioni(List<Collezione> collezioni) {
+		this.collezioni = collezioni;
+	}
 }

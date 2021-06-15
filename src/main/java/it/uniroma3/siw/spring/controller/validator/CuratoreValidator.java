@@ -25,7 +25,7 @@ public class CuratoreValidator implements Validator {
 			
 			if (this.curatoreService.alreadyExists((Curatore)o)) {
 			
-				errors.reject("duplicato");
+				errors.reject("curatore.duplicato");
 			}
 		}
 	}

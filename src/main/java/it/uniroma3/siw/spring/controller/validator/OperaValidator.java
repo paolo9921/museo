@@ -27,7 +27,7 @@ public class OperaValidator implements Validator{
 			
 			if (this.operaService.alreadyExists((Opera) o)) {
 			
-				errors.reject("duplicato");
+				errors.reject("opera.duplicato");
 			}
 		}
 	}
