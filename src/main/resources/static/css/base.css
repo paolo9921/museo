@@ -3,6 +3,8 @@ html, body {
 }
 
 body {
+	font-family: 'Muli';
+	 font-size: 22px; 
 	background: url("/images/sfondoHome.jpg");
 	min-height: 100vh;
 }
@@ -32,6 +34,7 @@ h1 {
 	font-size: 42px;
 	padding-top: 1.5%;
 	padding-bottom: 1.5%;
+	text-shadow: 0.1em 0.1em 0.15em #78ab46;
 }
 
 .navbar {
