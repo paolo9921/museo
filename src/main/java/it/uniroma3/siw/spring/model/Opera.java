@@ -15,7 +15,7 @@ public class Opera {
 	@Column 
 	private String anno;
 	
-	@Column(length=1000)
+	@Column
 	private String descrizione;
 	
 	@ManyToOne

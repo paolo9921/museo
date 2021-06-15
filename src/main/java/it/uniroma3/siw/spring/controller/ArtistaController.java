@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -96,7 +97,7 @@ public class ArtistaController {
     @RequestMapping(value = "/admin/addArtista", method = RequestMethod.POST)
     public String newArtista(@RequestParam("foto") MultipartFile foto,@ModelAttribute("artista") Artista artista, 
     									Model model, BindingResult bindingResult) {
-    	this.artistaValidator.validateModifica(artista, bindingResult);
+    	this.artistaValidator.validate(artista, bindingResult);
         if (!bindingResult.hasErrors()) {
         	
         	if(!foto.isEmpty()) {
@@ -171,7 +172,7 @@ public class ArtistaController {
     		model.addAttribute("artisti",this.artistaService.tutti());
     	}else {
     		
-    		model.addAttribute("artisti", this.artistaService.artistaPerNome(nome));
+    		model.addAttribute("artisti", this.artistaService.artistaPerNome(StringUtils.capitalize(nome)));
     	}
     	
     	return "artisti.html";
@@ -181,7 +182,7 @@ public class ArtistaController {
     public String cercaPerNazione(@RequestParam("nazioneArtista") String nazione, Model model){
     	//if(nome.equals(""))
     		//return "collezioni.html";
-    	model.addAttribute("artisti", this.artistaService.artistaPerNazione(nazione));
+    	model.addAttribute("artisti", this.artistaService.artistaPerNazione(StringUtils.capitalize(nazione)));
     	
     	return "artisti.html";
     }
