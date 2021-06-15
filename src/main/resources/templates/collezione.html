@@ -33,7 +33,7 @@
 				<div id="opera" th:each="opera : *{opere}"><a
 					th:href="@{'/opera' + '/' + ${opera.id}}"
 					th:text="|${opera.titolo} (${opera.anno})|"></a>
-					<img th:attr="src=@{${'/images/'+opera.imgSource}}">
+					<img th:src="*{imgSource}">
 				</div>
 			
 				</div>

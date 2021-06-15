@@ -36,7 +36,7 @@
 				</div>
 			</div>
 				<div class="allinea" >
-					<img id="fotoArtista" th:attr="src=@{${'/images/'+artista.imgSource}}" height=200px
+					<img id="fotoArtista" th:src="*{imgSource}" height=200px
 						width=150px />
 				</div>
 			</div><!-- end riga -->	
@@ -51,7 +51,7 @@
 				<div id="opera" th:each="opera : ${artista.opere}"><a
 					th:href="@{'/opera' + '/' + ${opera.id}}"
 					th:text="${opera.titolo} "></a>
-					<img th:attr="src=@{${'/images/'+opera.imgSource}}" >
+					<img th:src="${opera.imgSource}" >
 				
 			
 				</div>

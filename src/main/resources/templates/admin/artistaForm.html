@@ -16,7 +16,7 @@
 					nuovo artista</h2>
 			</div>
 			<form th:action="@{/admin/addArtista}" method="POST"
-				th:object="${artista}">
+				th:object="${artista}" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 
 				<div th:if="${#fields.hasGlobalErrors()}">
@@ -91,8 +91,8 @@
 					</div>
 					<div class="allinea">
 						<br> <strong th:text="#{form.fotoArtista}">Foto
-							dell'artista:</strong><br> <input type="file" th:value="*{imgSource}"
-							th:field="*{imgSource}" />
+							dell'artista:</strong><br> <input type="file"
+							name="foto" accept="image/png, image/jpeg"/>
 					</div>
 				</div>
 				<!-- riga 4 -->

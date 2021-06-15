@@ -14,7 +14,7 @@
 				<h2 th:text="#{form.opera.caption}" id="caption"></h2>
 			</div>
 			<form th:action="@{/admin/addOpera}" method="POST"
-				th:object="${opera}">
+				th:object="${opera}" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" th:value="*{id}"/>
 				
 
@@ -71,7 +71,7 @@
 					</div>
 					<div class="allinea">
 						<strong>Seleziona immagine: </strong> <br>
-						<input type="file" th:field="*{imgSource}">
+						<input type="file" name="foto" accept="image/png, image/jpeg">
 					</div>
 
 				</div>

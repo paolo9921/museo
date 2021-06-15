@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;

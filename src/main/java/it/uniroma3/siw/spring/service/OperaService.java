@@ -1,5 +1,8 @@
 package it.uniroma3.siw.spring.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,10 +11,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import it.uniroma3.siw.spring.model.Artista;
 import it.uniroma3.siw.spring.model.Collezione;
-import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.repository.OperaRepository;
 
@@ -20,6 +26,9 @@ public class OperaService {
 
 	@Autowired
 	private OperaRepository operaRepository; 
+	
+	@Autowired
+	private Cloudinary cloudinary;
 	
 	@Transactional
 	public Opera inserisci(Opera opera) {
@@ -90,6 +99,22 @@ public class OperaService {
 	public List<Opera> operePerCollezione(Collezione c) {
 		
 		return operaRepository.findAllByCollezione(c);
+	}
+
+		public void caricaFoto(Opera opera,MultipartFile foto) throws IOException {
+		//crea un file temporaneo con dentro la foto (avrei pututo fare anche File file=new File() )
+		File file = Files.createTempFile("temp", foto.getOriginalFilename()).toFile();
+		foto.transferTo(file);
+			
+		
+		//carica su cloudinary la foto e salva in imgSource il link
+		try {
+			opera.setImgSource((String)cloudinary.uploader().upload(file,ObjectUtils.emptyMap()).get("secure_url"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

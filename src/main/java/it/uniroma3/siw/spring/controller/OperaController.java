@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.spring.controller.validator.OperaValidator;
 import it.uniroma3.siw.spring.model.Opera;
@@ -79,12 +82,23 @@ public class OperaController {
 
     @RequestMapping(value = "/admin/addOpera", method = RequestMethod.POST)
     public String newOpera(@RequestParam Long artistaSelezionato,@RequestParam Long collezioneSelezionata,
-    						@ModelAttribute("opera") Opera opera, Model model, BindingResult bindingResult) {
+    						@RequestParam("foto") MultipartFile foto, @ModelAttribute("opera") Opera opera, Model model, BindingResult bindingResult) {
+    	
     	this.operaValidator.validate(opera, bindingResult);
         if (!bindingResult.hasErrors()) {
         	opera.setArtista(this.artistaService.artistaPerId(artistaSelezionato));
         	opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
-           	this.operaService.inserisci(this.operaService.toUpperCase(opera));
+           	
+        	if(!foto.isEmpty()) {
+	        	try {
+					this.operaService.caricaFoto(opera,foto);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return "error.html";
+				}
+        	}
+        	this.operaService.inserisci(this.operaService.toUpperCase(opera));
 
             model.addAttribute("opere", this.operaService.tutti());
             return "admin/opere.html";
@@ -96,7 +110,8 @@ public class OperaController {
     
     @RequestMapping(value = "/admin/addOpera", method = RequestMethod.POST, params="modifica")
     public String modificaOpera(@RequestParam Long artistaSelezionato,@RequestParam Long collezioneSelezionata,
-    		@ModelAttribute("opera") Opera opera, Model model, BindingResult bindingResult) {
+    							@RequestParam("foto") MultipartFile foto,@ModelAttribute("opera") Opera opera, Model model, BindingResult bindingResult) {
+    
     	logger.debug("*************MODIFICA. ID OPERA= "+opera.getId());
     	this.operaValidator.validateModifica(opera, bindingResult);
     	if (!bindingResult.hasErrors()) {
@@ -104,15 +119,28 @@ public class OperaController {
     			opera.setArtista(this.artistaService.artistaPerId(artistaSelezionato));
     		if(collezioneSelezionata != null)
     			opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
+        	
+        	if(!foto.isEmpty()) {
+	        	try {
+					this.operaService.caricaFoto(opera,foto);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return "error.html";
+				}
+        	}
+    		if(opera.getImgSource() == null)
+            	opera.setImgSource(imgSourceCorrente);
+    		
     		this.operaService.inserisci(this.operaService.toUpperCase(opera));
 
-    		if(this.operaService.operaPerId(opera.getId()).getImgSource().equals("") && imgSourceCorrente != null) {
+    		/*if(this.operaService.operaPerId(opera.getId()).getImgSource().equals("") && imgSourceCorrente != null) {
     			opera.setImgSource(imgSourceCorrente);
     			logger.debug("************* HO IMPOSTATO IMGSOURCE****"+opera.getImgSource());
         		this.operaService.inserisci(this.operaService.toUpperCase(opera));
 
     			imgSourceCorrente=null;
-    		}
+    		}*/
     		
 
     		model.addAttribute("opere", this.operaService.tutti());
@@ -126,6 +154,7 @@ public class OperaController {
 	@RequestMapping(value = "/opere/modifica/{id}", method = RequestMethod.GET)
 	public String modificaOpera(@PathVariable("id") Long id, Model model) {
 		this.imgSourceCorrente = this.operaService.operaPerId(id).getImgSource();
+		logger.debug("*****IMG SOURCE= "+imgSourceCorrente);
 		model.addAttribute("opera",this.operaService.operaPerId(id));
 		model.addAttribute("altriArtisti",this.artistaService.tuttiDisponibili(this.operaService.operaPerId(id).getArtista()));
 		//altreCollezioni è la lista di tutte le collezioni senza quella di cui l'opera fa parte
