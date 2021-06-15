@@ -9,6 +9,38 @@ body {
 #main{
 	
 }
+#contenitoreTorre{
+	height:100%;
+	
+	
+	background-color: white;
+}
+#torreSx{
+	height: 40%;
+	position:absolute;
+	left:0;
+	bottom:8vh;
+	opacity:0.7;
+}
+#torreDx{
+	height: 40vh;
+	position:absolute;
+	right:0;
+	bottom:8vh;
+	opacity:0.7;
+}
+#benvenuto{
+		width:100%;
+		text-align:center;
+}
+#centro{	
+	width:80%;	
+}
+#foto{
+	width:40%;
+	margin-left:30%;
+	
+}
 .contenuto {
 	margin-top: 2%;
 	display: flex;
@@ -18,25 +50,26 @@ body {
 	height: 60%;
 }
 .contenuto#info{
-	margin-top:1%;
-	margin-right:5%;
+	margin:0px;
+	
+	margin-bottom:2%;
 	font-size: 3vh;
-}
-#box1 {
-	background-color: green;
-	width: 10%;
-	height: 200px;
 }
 
 #titolo {
+	padding:0px;
 	text-align: center;
+	
 }
 
 #boxUno {
 	text-align: center;
 	width: 42%;
+	
 }
-
+#scritta{
+	display:flex;
+}
 #boxDue {
 	
 	text-align: center;
@@ -56,5 +89,9 @@ body {
 	display: inline-block;
 }
 .info{
-	font-size:3.5vh;
+	font-size:3vh;
+}
+#mappa{
+	width:80%;
+	height:80%;
 }
