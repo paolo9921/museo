@@ -2,7 +2,20 @@ html,body{height: 100%;margin:0px;}
 body{
 	text-align:center;
 }
-
+#contenitore {
+	margin-bottom: 2%;
+	display: flex;
+	justify-content: space-between;
+}
+#box1 {
+	width: 40%;
+	margin-left: 10%;
+	justify-content: right;
+}
+#box2 {
+	width: 40%;
+	margin-right: 10%;
+}
 
 .table-ext{
 	width: 50%;
@@ -98,7 +111,8 @@ button:hover{
 	width:12%;
 }
 .primaColonna {
-	width: 35%;
+	width: 30%;
+	font-weight: bold;
 }
 .colonnaNazione {
 	width: 20%;
@@ -107,4 +121,6 @@ button:hover{
 .colonnaData {
 	width: 15%;
 }
-
+.opzioniCollezioni{
+	width:10%;
+}
