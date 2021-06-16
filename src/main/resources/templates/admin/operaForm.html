@@ -19,7 +19,7 @@
 				
 
 				<div th:if="${#fields.hasGlobalErrors()}">
-					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+					<p class="errore" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
 
 				<span class="errore" th:if="${#fields.hasErrors('titolo')}"

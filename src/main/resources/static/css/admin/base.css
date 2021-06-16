@@ -12,7 +12,7 @@ header{
 	color: white;
 }
 #container{
-	height:100%;
+	min-height:100%;
 }
 body > #container {height: auto; min-height: 100%;}
 #main{
@@ -52,7 +52,7 @@ h2 a{
 
 #footer{
     background:#424242;
-   margin-top: -8vh;
+   margin-top: -5vh;
     height:8vh;
     width:100%;
     clear:both;

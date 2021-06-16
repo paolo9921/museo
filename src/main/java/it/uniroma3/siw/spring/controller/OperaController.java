@@ -179,7 +179,8 @@ public class OperaController {
     		model.addAttribute("opere",this.operaService.tutti());
     	}else {
     		
-    		model.addAttribute("opere", this.operaService.operaPerTitolo(titolo));
+    		model.addAttribute("opere", this.operaService.operaPerTitolo(StringUtils.capitalize(titolo)));
+    		
     	}
     	
     	return "opere.html";
@@ -190,7 +191,7 @@ public class OperaController {
 			model.addAttribute("opere",this.operaService.tutti());
 		}else {
 			
-			model.addAttribute("opere", this.operaService.operePerArtista(this.artistaService.artistaPerCognome(nome)));
+			model.addAttribute("opere", this.operaService.operePerArtista(this.artistaService.artistaPerCognome(StringUtils.capitalize(nome))));
 		}
 		
 		return "opere.html";
@@ -201,7 +202,7 @@ public class OperaController {
 			model.addAttribute("opere",this.operaService.tutti());
 		}else {
 			
-			model.addAttribute("opere", this.operaService.operePerCollezione(this.collezioneService.collezionePerNome(nome)));
+			model.addAttribute("opere", this.operaService.operePerCollezione(this.collezioneService.collezionePerNome(StringUtils.capitalize(nome))));
 		}
 		
 		return "opere.html";

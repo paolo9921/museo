@@ -20,7 +20,7 @@
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 
 				<div th:if="${#fields.hasGlobalErrors()}">
-					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+					<p class="errore" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
 
 				<div class="riga">
@@ -114,7 +114,7 @@
 
 
 			</form>
-			<a class="indietro" th:href="@{/admin/artisti}"><button
+			<a  th:href="@{/admin/artisti}"><button class="indietro"
 					th:text="#{form.indietro}">Indietro</button></a>
 		</div>
 	</div>

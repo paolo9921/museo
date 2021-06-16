@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import it.uniroma3.siw.spring.model.Collezione;
 import it.uniroma3.siw.spring.repository.CollezioneRepository;
@@ -63,7 +64,7 @@ public class CollezioneService {
 		
 	@Transactional
 	public boolean alreadyExists(Collezione collezione) {
-		List<Collezione> collezioni = this.collezioneRepository.findAllByNome(collezione.getNome());
+		List<Collezione> collezioni = this.collezioneRepository.findAllByNome(StringUtils.capitalize(collezione.getNome()));
 		if (collezioni.size() > 0)
 			return true;
 		else 

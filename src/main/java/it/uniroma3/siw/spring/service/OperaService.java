@@ -73,7 +73,7 @@ public class OperaService {
 	
 	@Transactional
 	public boolean alreadyExists(Opera opera) {
-		List<Opera> opere = this.operaRepository.findByTitolo(opera.getTitolo());
+		List<Opera> opere = this.operaRepository.findByTitolo(StringUtils.capitalize(opera.getTitolo()));
 		if (opere.size() > 0)
 			return true;
 		else 

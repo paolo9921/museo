@@ -6,12 +6,12 @@ body{
 #caption{
 	font-size: 35px;
 	margin: 20px;
+	padding:0px;
 }
 .riga {
 text-align: center;
 }
 .allinea{
-margin:5px;
 padding: 5px;
 max-width: 500px;
 display: inline-block;
@@ -58,6 +58,6 @@ button:hover{
 	color: red;
 }
 .indietro{
-	margin-bottom: 2%;
+	margin-bottom: 5%;
 }
 

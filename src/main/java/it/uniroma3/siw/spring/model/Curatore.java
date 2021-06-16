@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames= {"nome","cognome","email"}))
+//@Table(uniqueConstraints=@UniqueConstraint(columnNames= {"nome","cognome","email"}))
 public class Curatore {
 
 	//id sarebbe la matricola
@@ -58,11 +58,7 @@ public class Curatore {
 		this.collezioni = new ArrayList<>();
 	}
 
-	public Curatore() {};
-
-	public List<Collezione> getCollezioni() { return collezioni; }
-
-	public void setCollezione(List<Collezione> collezione) { this.collezioni = collezione; }
+	public Curatore() {}
 
 	public Long getId() {
 		return id;
@@ -72,25 +68,46 @@ public class Curatore {
 		this.id = id;
 	}
 
-	public String getNome() { return nome; }
+	public String getNome() {
+		return nome;
+	}
 
-	public void setNome(String firstName) { this.nome = firstName; }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-	public String getCognome() { return cognome; }
+	public String getCognome() {
+		return cognome;
+	}
 
-	public void setCognome(String lastName) { this.cognome = lastName; }
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
 
-	public String getEmail() { return email; }
+	public String getEmail() {
+		return email;
+	}
 
-	public void setEmail(String email) { this.email = email; }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-	public String getNumeroTelefono() { return numeroTelefono; }
+	public String getNumeroTelefono() {
+		return numeroTelefono;
+	}
 
-	public void setNumeroTelefono(String phoneNumber) { this.numeroTelefono = phoneNumber; }
+	public void setNumeroTelefono(String numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
+	}
 
-	public LocalDate getDataNascita() { return dataNascita; }
+	public LocalDate getDataNascita() {
+		return dataNascita;
+	}
 
-	public void setDataNascita(LocalDate dateOfBirth) { this.dataNascita = dateOfBirth; }
+	public void setDataNascita(LocalDate dataNascita) {
+		this.dataNascita = dataNascita;
+	}
+
 	public String getLuogoNascita() {
 		return luogoNascita;
 	}
@@ -99,7 +116,13 @@ public class Curatore {
 		this.luogoNascita = luogoNascita;
 	}
 
+	public List<Collezione> getCollezioni() {
+		return collezioni;
+	}
+
 	public void setCollezioni(List<Collezione> collezioni) {
 		this.collezioni = collezioni;
-	}
+	};
+
+
 }

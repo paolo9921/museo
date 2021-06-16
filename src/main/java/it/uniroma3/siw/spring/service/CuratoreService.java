@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,6 +22,8 @@ public class CuratoreService {
 	@Autowired
 	private CuratoreRepository curatoreRepository; 
 	
+	 private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Transactional
 	public Curatore inserisci(Curatore curatore) {
 		return curatoreRepository.save(curatore);
@@ -46,8 +50,10 @@ public class CuratoreService {
 
 	@Transactional
 	public boolean alreadyExists(Curatore curatore) {
-		List<Curatore> opere = this.curatoreRepository.findByNomeAndCognome(curatore.getNome(), curatore.getCognome());
-		if (opere.size() > 0)
+		logger.debug("***STO QUA**");
+		//devo mettere la prima lettera maiuscola perche nel db sono salvati cosi
+		List<Curatore> curatori = this.curatoreRepository.findByNomeAndCognomeAndEmail(StringUtils.capitalize(curatore.getNome()), StringUtils.capitalize(curatore.getCognome()),curatore.getEmail());
+		if (curatori.size() > 0)
 			return true;
 		else 
 			return false;
@@ -56,6 +62,8 @@ public class CuratoreService {
 	public Curatore toUpperCase(Curatore curatore) {
 		curatore.setNome(StringUtils.capitalize(curatore.getNome()));
 		curatore.setCognome(StringUtils.capitalize(curatore.getCognome()));
+		if(curatore.getLuogoNascita()!= null)
+			curatore.setLuogoNascita(StringUtils.capitalize(curatore.getLuogoNascita()));
 		
 		return curatore;
 	}

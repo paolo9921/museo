@@ -41,7 +41,6 @@ public class CollezioneController {
 	@Autowired
 	private OperaService operaService;
 	
-	private Long idCorrente;
 	
 	
 	@RequestMapping(value="/collezioni", method = RequestMethod.GET)
@@ -156,7 +155,7 @@ public class CollezioneController {
     		model.addAttribute("collezioni",this.collezioneService.tutti());
     	}else {
     		
-    		model.addAttribute("collezioni", this.collezioneService.collezionePerNome(nome));
+    		model.addAttribute("collezioni", this.collezioneService.collezionePerNome(StringUtils.capitalize(nome)));
     	}
     	
     	return "collezioni.html";

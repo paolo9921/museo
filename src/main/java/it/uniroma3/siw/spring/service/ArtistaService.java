@@ -94,7 +94,7 @@ public class ArtistaService {
 	
 	@Transactional
 	public boolean alreadyExists(Artista artista) {
-		List<Artista> studenti = this.artistaRepository.findByNomeAndCognome(artista.getNome(), artista.getCognome());
+		List<Artista> studenti = this.artistaRepository.findByNomeAndCognome(StringUtils.capitalize(artista.getNome()),StringUtils.capitalize(artista.getCognome()));
 		if (studenti.size() > 0)
 			return true;
 		else 

@@ -18,8 +18,9 @@
 			<form th:action="@{/admin/addCollezione}" method="POST"
 				th:object="${collezione}">
 				<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+				
 				<div th:if="${#fields.hasGlobalErrors()}">
-					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+					<p class="errore" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
 				<span class="errore" th:if="${#fields.hasErrors('nome')}"
 					th:errors="*{nome}"></span>

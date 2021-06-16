@@ -2,6 +2,8 @@ package it.uniroma3.siw.spring.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,8 @@ public class CuratoreController {
 	private CuratoreValidator curatoreValidator;
 
 	private Long idCorrente;
+	
+	 private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
 	@RequestMapping(value="/admin/addCuratore", method = RequestMethod.GET)
@@ -60,14 +64,12 @@ public class CuratoreController {
     }
     @RequestMapping(value = "/admin/addCuratore", method = RequestMethod.POST, params="modifica")
     public String modificaCuratore(@ModelAttribute("curatore") Curatore curatore, Model model, BindingResult bindingResult) {
+    	
     	this.curatoreValidator.validateModifica(curatore, bindingResult);
         if (!bindingResult.hasErrors()) {
-          	
-          /*	if(idCorrente != null) {
-          		curatore.setId(idCorrente);
-  				this.idCorrente = null;
-			}*/
+        	
           	this.curatoreService.inserisci(this.curatoreService.toUpperCase(curatore));
+       
             model.addAttribute("curatori", this.curatoreService.tutti());
             return "admin/curatori.html";
         }
@@ -76,8 +78,7 @@ public class CuratoreController {
     
 	@RequestMapping(value = "/curatori/modifica/{id}", method = RequestMethod.GET)
 	public String modificaCollezione(@PathVariable("id") Long id, Model model) {
-		//salvo l'id in una variabile locale per poter eliminare la collezione una volta aggiunta quella nuova (modificata)
-		//this.idCorrente = id;
+		
 		model.addAttribute("curatore",this.curatoreService.curatorePerId(id));
 		model.addAttribute("modif",true);
 
