@@ -7,55 +7,134 @@
 </head>
 
 <body>
-<div id="container">
-	<header th:replace="fragments/admin_base.html :: header"></header>
-	<div id="main">
-		
-		
-		
-		<table align="center" class="table-ext">
-			<caption th:text="#{opere.table.caption}">ELENCO OPERE</caption>
-			<thead>
-				<tr>
-					<th id="colonnaNome" th:text="#{opere.table.title}">TITOLO</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
+	<div id="container">
+		<header th:replace="fragments/admin_base.html :: header"></header>
+		<div id="main">
 
-			<tbody>
-				<tr>
-					<td colspan="3">
-						<div class="divinterno">
-							<table align="center" class="table-int">
-								<tr th:each="opera : ${opere}">
-									<td id="colonnaNome"><a	th:href="@{'/opera' + '/' + ${opera.id}}"
-															th:text="${opera.titolo}"></a></td>
-									<td class="opzioniCollezioni"><a th:href="@{'/opere/modifica'+'/'+${opera.id}}"
-																	 th:text="#{admin.modifica}">modifica</a></td>
-									<td class="opzioniCollezioni"><a th:href="@{'/opere/delete'+'/'+${opera.id}}"
-																	 th:text="#{admin.elimina}">elimina</a></td>
 
-								</tr>
-							</table>
-							<!--Table-int-->
-						</div>
-					</td>
-					<!--/colspan tabella ext-->
-				</tr>
-			</tbody>
-		</table>
-		<!--/table-ext-->
-		
-		<div>
-			<form th:action="@{/admin/addOpera}">
-				<button type="submit" th:text="#{button.addOpera}">Aggiungi nuova opera</button>
-			</form>
+
+			<table align="center" class="table-ext-opere">
+				<caption th:text="#{opere.table.caption}">ELENCO ARTSTI</caption>
+				<thead>
+					<tr>
+						<th class="colonnaTitolo" th:text="#{opere.table.title}"></th>
+						<th class="colonnaArtista" th:text="#{opere.autore}"></th>
+						<th class="colonnaCollezione" th:text="#{opere.collezione}"></th>
+						<th class="colonnaData" th:text="#{opere.anno}"></th>
+						<th class="opzioniCollezione">
+						<th class="opzioniCollezione">
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td colspan="6">
+							<div class="divinterno">
+								<table align="center" class="table-int">
+									<tr th:each="opera : ${opere}">
+										<td class="colonnaTitolo"><a
+											th:href="@{'/opera' + '/' + ${opera.id}}"
+											th:text="${opera.titolo}"></a></td>
+
+										<td class="colonnaArtista"><a th:if="${opera.artista}"
+											th:href="@{'/artista' + '/' + ${opera.artista?.id}}"
+											th:text="|${opera.artista.nome} ${opera.artista.cognome}|"></a>
+											<span th:unless="${opera.artista}"
+											th:text="#{artista.sconosciuto}"></span></td>
+
+
+
+										<td th:if="${opera.collezione}" class="colonnaCollezione"><a
+											th:text="${opera.collezione.nome}"
+											th:href="@{'/collezione' + '/' + ${opera.collezione.id}}"></a></td>
+										<td th:unless="${opera.collezione}" class="colonnaCollezione"
+											th:text="#{opera.noCollezione}">
+										<td class="colonnaData" th:text="${opera.anno}"></td>
+										<td class="opzioniCollezioni"><a
+											th:href="@{'/opere/modifica'+'/'+${opera.id}}"
+											th:text="#{admin.modifica}">modifica</a></td>
+										<td class="opzioniCollezioni"><a
+											th:href="@{'/opere/delete'+'/'+${opera.id}}"
+											th:text="#{admin.elimina}">elimina</a></td>
+									</tr>
+								</table>
+								<!--Table-int-->
+							</div>
+						</td>
+						<!--/colspan tabella ext-->
+					</tr>
+				</tbody>
+			</table>
+			<!--/table-ext -->
+			<div>
+				<form th:action="@{/admin/addOpera}">
+					<button type="submit" th:text="#{button.addOpera}">Aggiungi
+						nuova opera</button>
+				</form>
+			</div>
+			<div id="contenitore">
+				<div id="box1">
+					<h3 th:text="#{searchBy}"></h3>
+					<div id="ricerca">
+
+						<!-- cerca per titolo -->
+						<form th:action="@{/admin/findTitolo}" method="GET">
+							<div class="cercaPer">
+								<span class="cerca" th:text="#{search.title}">Cerca per
+									nome: </span><input th:name="titoloOpera" type="text"
+									autofocus="autofocus" placeholder="titolo da cercare">
+								<button type="submit">Cerca</button>
+							</div>
+						</form>
+
+						<!-- cerca per autore -->
+						<form th:action="@{/admin/findAutore}" method="GET">
+							<div class="cercaPer">
+								<span class="cerca" th:text="#{search.autore}">Cerca per
+									nazione: </span><input th:name="nomeAutore" type="text"
+									placeholder="artista da cercare">
+								<button type="submit" th:text="#{search.button}">Cerca</button>
+							</div>
+						</form>
+
+						<!-- cerca per collezione -->
+						<form th:action="@{/admin/findCollezione}" method="GET">
+							<div class="cercaPer">
+								<span class="cerca" th:text="#{search.collezione}"></span><input
+									th:name="nomeCollezione" type="text"
+									placeholder="collezione da cercare">
+								<button type="submit" th:text="#{search.button}">Cerca</button>
+							</div>
+						</form>
+						<br> <a th:href="@{/admin/opere}"><button id="tornaElenco"
+								th:text="#{search.back}">Torna all'elenco completo</button></a>
+					</div>
+				</div>
+				<!-- end box1 -->
+
+
+				<div id="box2">
+					<h3 th:text="#{orderBy}"></h3>
+					<div>
+						<form th:action="@{/admin/opere}" method="GET">
+							<button type="submit" th:text="#{order.title}">Nomeee</button>
+						</form>
+						<form th:action="@{/admin/orderCollezione}" method="GET">
+							<button type="submit" th:text="#{order.collezione}">Nomeee</button>
+						</form>
+						<form th:action="@{/admin/orderAnno}" method="GET">
+							<button type="submit" th:text="#{order.anno}">Nomeee</button>
+						</form>
+						<br>
+					</div>
+
+				</div>
+
+
+			</div>
+
 		</div>
-		
-		
 	</div>
-</div>
 	<footer th:replace="fragments/admin_base.html :: fondo"></footer>
 </body>
 </html>

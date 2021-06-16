@@ -35,5 +35,6 @@ public interface ArtistaRepository extends CrudRepository<Artista, Long>{
 	@Query("SELECT a FROM Artista a WHERE nazionalita LIKE %?1%")
 	public List<Artista> findAllByNazioneIsLike(String nazione);
 
+	
 
 }

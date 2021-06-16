@@ -14,30 +14,35 @@
 
 
 
-
-		<table align="center" class="table-ext">
-			<caption th:text="#{collezioni.table.caption}">ELENCO
-				ARTSTI</caption>
+<table align="center" class="table-ext-collezioni">
+			<caption th:text="#{collezioni.table.caption}">ELENCO COLLEZIONI</caption>
 			<thead>
 				<tr>
-					<th id="colonnaNome" th:text="#{artisti.table.name}">NOME</th>
-					<th></th>
-					<th></th>
+					<th class="primaColonna" th:text="#{collezioni.table.name}">NOME</th>
+					<th class="colonnaCuratore" th:text="#{collezioni.table.curatore}">CURATORE</th>
+					<th class="colonnaData" th:text="#{collezioni.table.stanza}">STANZA</th>
+					<th class="opzioniCollezioni">
+					<th class="opzioniCollezioni">
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr>
-					<td colspan="3">
+					<td colspan="5">
 						<div class="divinterno">
 							<table align="center" class="table-int">
 								<tr th:each="collezione : ${collezioni}">
-									<td id="colonnaNome"><a	th:href="@{'/collezione' + '/' + ${collezione.id}}"
-															th:text="${collezione.nome}"></a></td>
+									
+									<td class="primaColonna"><a
+										th:href="@{/collezione/{id}(id=${collezione.id})}" th:text="${collezione.nome}"></a></td>
+									<td class ="colonnaCuratore" th:if="${collezione.curatore}" th:text="|${collezione.curatore.nome} ${collezione.curatore.cognome}|"></td>
+									<td th:unless="${collezione.curatore}" th:text="#{curatore.nessuno}">
+									<td  class="colonnaData" th:text="${collezione.stanza}"></td>
 									<td class="opzioniCollezioni"><a th:href="@{'/collezioni/modifica'+'/'+${collezione.id}}"
 																	 th:text="#{admin.modifica}">modifica</a></td>
 									<td class="opzioniCollezioni"><a th:href="@{'/collezioni/delete'+'/'+${collezione.id}}"
 																	 th:text="#{admin.elimina}">elimina</a></td>
+									
 
 								</tr>
 							</table>
@@ -49,15 +54,25 @@
 			</tbody>
 		</table>
 		<!--/table-ext-->
-
-
-		<div>
+				<div>
 			<form th:action="@{/admin/addCollezione}">
 				<button type="submit" th:text="#{button.addCollezione}">Aggiungi nuova collezione</button>
 			</form>
 		</div>
-	
-	<!-- <h4 th:text="#{admin.collezioni.alert}"></h4>-->
+
+		<div id="rigaRicerca">
+			<form th:action="@{/admin/findCollezioneName}" method="GET">
+				<span class="cerca" th:text="#{search.name}">Cerca per nome: </span><input th:name="nomeCollezione"
+					type="text" Placeholder="nome della collezione">
+					<button type="submit" th:text="#{search.button}">Cerca</button>
+
+			</form>
+			<br> <a th:href="@{/admin/collezioni}"><button id="tornaElenco"
+								th:text="#{search.back}">Torna all'elenco completo</button></a>
+
+
+
+	</div>
 	</div>
 </div>
 	<footer th:replace="fragments/admin_base.html :: fondo"></footer>

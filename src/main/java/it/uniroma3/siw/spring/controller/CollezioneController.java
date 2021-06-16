@@ -48,6 +48,11 @@ public class CollezioneController {
 		model.addAttribute("collezioni", this.collezioneService.tutti());
 		return "collezioni.html";
 	}
+	@RequestMapping(value="/admin/collezioni", method = RequestMethod.GET)
+	public String getCollezioniAdmin(Model model) {
+		model.addAttribute("collezioni", this.collezioneService.tutti());
+		return "admin/collezioni.html";
+	}
 	
     @RequestMapping(value = "/collezione/{id}", method = RequestMethod.GET)
     public String getCollezione(@PathVariable("id") Long id, Model model) {
@@ -55,11 +60,7 @@ public class CollezioneController {
     	return "collezione.html";
     }
     
-	@RequestMapping(value="/admin/collezioni", method = RequestMethod.GET)
-	public String getCollezioniAdmin(Model model) {
-		model.addAttribute("collezioni", this.collezioneService.tutti());
-		return "admin/collezioni.html";
-	}
+
 	
 	@RequestMapping(value="/admin/addCollezione", method = RequestMethod.GET)
 	public String addCollezione(Model model) {
@@ -79,7 +80,8 @@ public class CollezioneController {
 		this.collezioneValidator.validate(collezione, bindingResult);
 		if (!bindingResult.hasErrors()) {
 						
-			collezione.setCuratore(this.curatoreService.curatorePerId(curatoreSelezionato));
+			if(collezione.getCuratore() != null)
+				collezione.setCuratore(this.curatoreService.curatorePerId(curatoreSelezionato));
 			collezione.setNome(StringUtils.capitalize(collezione.getNome()));
 			if(operaSelezionata != null)
 				this.operaService.operaPerId(operaSelezionata).setCollezione(collezione);

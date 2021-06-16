@@ -149,5 +149,7 @@ public class ArtistaService {
 		public List<Artista> artistaPerNazioneIsLike(String nazione) {	
 			return this.artistaRepository.findAllByNazioneIsLike(nazione);
 		}
+
+
 		
 }

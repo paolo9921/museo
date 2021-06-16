@@ -1,119 +1,166 @@
-html,body{height: 100%;margin:0px;}
-body{
-	text-align:center;
+html, body {
+	height: 100%;
+	margin: 0px;
 }
+
+body {
+	text-align: center;
+}
+
 #contenitore {
+	margin-top: 2%;
 	margin-bottom: 2%;
 	display: flex;
 	justify-content: space-between;
 }
+
 #box1 {
-	width: 40%;
 	margin-left: 10%;
-	justify-content: right;
+	border-right: 1px solid #424242;
+	text-align: center;
+	width: 40%;
 }
+
 #box2 {
 	width: 40%;
 	margin-right: 10%;
 }
 
-.table-ext{
-	width: 50%;
+.table-ext {
+	width: 80%;
 	border-top: 2px solid #424242;
 	border-bottom: 2px solid #424242;
-	border-spacing: 5px;
-	border-collapse: separate;
 	align-items: center;
-	margin-bottom: 20px;	
-
+	margin-bottom: 20px;
 }
-.table-externa{
+
+.table-ext-opere {
+	width: 70%;
+	border-top: 2px solid #424242;
+	border-bottom: 2px solid #424242;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.table-ext-collezioni {
+	width: 60%;
+	border-top: 2px solid #424242;
+	border-bottom: 2px solid #424242;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.table-externa {
 	width: 90%;
 	border-top: 2px solid #424242;
 	border-bottom: 2px solid #424242;
 	border-spacing: 5px;
 	border-collapse: separate;
-	
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
-caption{
+
+caption {
 	font-size: 24px;
 	border-bottom: 1px solid #424242;
 }
 
-th{
+th {
 	border-bottom: 0.5px solid #424242;
 }
 
-
-#colonnaNome{
+#colonnaNome {
 	width: 45%;
 }
-.divinterno{
-	
+
+a {
+	font-weight: bold;
+}
+
+.divinterno {
 	max-height: 40vh;
 	overflow: auto;
 	width: 100%;
 }
+
 .table-int {
-width:100%; 
+	width: 100%;
 }
-.table-interna{
-	width:100%;
+
+.table-interna {
+	width: 100%;
 }
+
 .table-int td {
-
-font-size: 18px;
-line-height: 25px;
-
-text-align:center;
-
+	font-size: 18px;
+	line-height: 25px;
+	text-align: center;
 }
+
 .table-interna td {
-
-font-size: 18px;
-line-height: 25px;
-
-text-align:center;
-width:100%;
-
+	font-size: 18px;
+	line-height: 25px;
+	text-align: center;
+	width: 100%;
 }
+
+.cercaPer {
+	margin: 5px 5px 5px 0px;
+	display: inline-block;
+	width: 100%;
+	text-align: right;
+}
+
 button {
-	width:200px;
-	background-color: #424242;
+	min-width: 100px;
+	background-color: #616161;
 	border-radius: 10px;
 	color: white;
-	padding: 5px 10px;
+	padding: 5px 5px;
 	font-size: 16px;
 	cursor: pointer;
 	margin: 0px 30px 0 30px;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
 }
-button:hover{
+
+.cerca {
+	font-size: 18px;
+	padding-right: 10px;
+}
+
+button:hover {
 	background-color: #878787
 }
-.indietro{
+
+.indietro {
 	margin-bottom: 20px;
 }
-.colonnaNome{
-	width:20%;
+
+.colonnaNome {
+	width: 20%;
 }
-.email{
-	width:18%;
+
+.email {
+	width: 18%;
 }
-.telefono{
-	width:12%;
+
+.telefono {
+	width: 12%;
 }
-.nascita{
-	width:12%;
+
+.nascita {
+	width: 12%;
 }
-.data{
-	width:12%;
+
+.data {
+	width: 12%;
 }
+
 .primaColonna {
 	width: 30%;
 	font-weight: bold;
 }
+
 .colonnaNazione {
 	width: 20%;
 }
@@ -121,6 +168,30 @@ button:hover{
 .colonnaData {
 	width: 15%;
 }
-.opzioniCollezioni{
-	width:10%;
+
+.colonnaCuratore {
+	width: 30%;
+}
+
+.colonnaArtista {
+	width: 20%;
+}
+
+.colonnaTitolo {
+	font-weight: bold;
+	width: 25%;
+}
+
+.colonnaCollezione {
+	width: 20%;
+}
+
+.opzioniCollezioni {
+	width: 10%;
+}
+
+#bottoniOrdina {
+	display: flex;
+	justify-content: space-beetwen;
+	flex-flow: row wrap;
 }

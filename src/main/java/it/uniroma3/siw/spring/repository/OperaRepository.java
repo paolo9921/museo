@@ -31,4 +31,7 @@ public interface OperaRepository extends CrudRepository<Opera,Long>{
 	
 	@Query("SELECT o FROM Opera o WHERE artista.nome LIKE %?1%")
 	public List<Opera> findAllByArtistaIsLike(String nome);
+	
+	@Query("SELECT o FROM Opera o WHERE artista.cognome LIKE %?1%")
+	public List<Opera> findAllByArtistaCognomeIsLike(String cognome);
 }

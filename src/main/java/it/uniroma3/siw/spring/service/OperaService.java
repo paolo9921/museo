@@ -126,4 +126,9 @@ public class OperaService {
 
 	}
 
+	public List<Opera> operePerArtisti(List<Artista> artisti) {
+		
+		return this.operaRepository.findAllByArtistaCognomeIsLike(null);
+	}
+
 }

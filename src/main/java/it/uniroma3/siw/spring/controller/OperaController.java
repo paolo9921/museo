@@ -46,15 +46,31 @@ public class OperaController {
     		model.addAttribute("opere", this.operaService.tuttiPerTitolo());
     		return "opere.html";
     }
+    @RequestMapping(value = "/admin/opere", method = RequestMethod.GET)
+    public String getOpereAdmin(Model model) {
+    	model.addAttribute("opere", this.operaService.tuttiPerTitolo());
+    	return "admin/opere.html";
+    }
     @RequestMapping(value="/orderCollezione",method=RequestMethod.GET)
     public String getOperePerCollezione(Model model) {
     	model.addAttribute("opere", this.operaService.tuttiPerCollezione());
     	return "opere.html";
     }
+    @RequestMapping(value="/admin/orderCollezione",method=RequestMethod.GET)
+    public String getOperePerCollezioneAdmin(Model model) {
+    	model.addAttribute("opere", this.operaService.tuttiPerCollezione());
+    	return "admin/opere.html";
+    }
+    
     @RequestMapping(value="/orderAnno",method=RequestMethod.GET)
     public String getOperePerAnno(Model model) {
     	model.addAttribute("opere", this.operaService.tuttiPerAnno());
     	return "opere.html";
+    }
+    @RequestMapping(value="/admin/orderAnno",method=RequestMethod.GET)
+    public String getOperePerAnnoAdmin(Model model) {
+    	model.addAttribute("opere", this.operaService.tuttiPerAnno());
+    	return "admin/opere.html";
     }
     
     @RequestMapping(value = "/opera/{id}", method = RequestMethod.GET)
@@ -64,11 +80,7 @@ public class OperaController {
     }
 
 
-    @RequestMapping(value = "/admin/opere", method = RequestMethod.GET)
-    public String getOpereAdmin(Model model) {
-    		model.addAttribute("opere", this.operaService.tutti());
-    		return "admin/opere.html";
-    }
+
     
 	@RequestMapping(value="/admin/addOpera", method = RequestMethod.GET)
 	public String addAdminOpera(Model model) {
@@ -184,6 +196,17 @@ public class OperaController {
     	
     	return "opere.html";
     }
+	@RequestMapping(value = "/admin/findTitolo",method = RequestMethod.GET)
+	public String cercaPerTitoloAdmin(@RequestParam("titoloOpera") String titolo, Model model){
+		if(titolo.equals("")) {
+			model.addAttribute("opere",this.operaService.tutti());
+		}else {    		
+			model.addAttribute("opere", this.operaService.operaPerTitoloIsLike(StringUtils.capitalize(titolo)));
+		}
+		
+		return "admin/opere.html";
+	}
+	
 	@RequestMapping(value = "/findAutore",method = RequestMethod.GET)
 	public String cercaPerAutore(@RequestParam("nomeAutore") String nome, Model model){
 		if(nome.equals("")) {
@@ -195,6 +218,18 @@ public class OperaController {
 		
 		return "opere.html";
 	}
+	@RequestMapping(value = "/admin/findAutore",method = RequestMethod.GET)
+	public String cercaPerAutoreAdmin(@RequestParam("nomeAutore") String nome, Model model){
+		if(nome.equals("")) {
+			model.addAttribute("opere",this.operaService.tutti());
+		}else {
+			
+			model.addAttribute("opere", this.operaService.operePerArtista(this.artistaService.artistaPerCognome(StringUtils.capitalize(nome))));
+		}
+		
+		return "admin/opere.html";
+	}
+	
 	@RequestMapping(value = "/findCollezione",method = RequestMethod.GET)
 	public String cercaPerCollezione(@RequestParam("nomeCollezione") String nome, Model model){
 		if(nome.equals("")) {
@@ -205,5 +240,16 @@ public class OperaController {
 		}
 		
 		return "opere.html";
+	}
+	@RequestMapping(value = "/admin/findCollezione",method = RequestMethod.GET)
+	public String cercaPerCollezioneAdmin(@RequestParam("nomeCollezione") String nome, Model model){
+		if(nome.equals("")) {
+			model.addAttribute("opere",this.operaService.tutti());
+		}else {
+			
+			model.addAttribute("opere", this.operaService.operePerCollezione(this.collezioneService.collezionePerNome(StringUtils.capitalize(nome))));
+		}
+		
+		return "admin/opere.html";
 	}
 }
