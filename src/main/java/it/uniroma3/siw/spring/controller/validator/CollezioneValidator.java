@@ -20,10 +20,9 @@ public class CollezioneValidator implements Validator{
 	@Override
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "curatore", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "curatore", "required");
 		
-		if( ((Collezione)o).getCuratore() == null)
-			errors.rejectValue("curatore", "required");
+		
 		if (!errors.hasErrors()) {
 			if (this.collezioneService.alreadyExists((Collezione)o)) {
 				errors.reject("collezione.duplicato");
