@@ -162,5 +162,16 @@ public class CollezioneController {
     	
     	return "collezioni.html";
     }
+    @RequestMapping(value = "/admin/findCollezioneName",method = RequestMethod.GET)
+    public String cercaCollezionePerNomeAdmin(@RequestParam("nomeCollezione") String nome, Model model){
+    	if(nome.equals("")) {
+    		model.addAttribute("collezioni",this.collezioneService.tutti());
+    	}else {
+    		
+    		model.addAttribute("collezioni", this.collezioneService.collezionePerNomeIsLike(StringUtils.capitalize(nome)));
+    	}
+    	
+    	return "admin/collezioni.html";
+    }
 	
 }
