@@ -87,7 +87,8 @@ public class OperaController {
     	this.operaValidator.validate(opera, bindingResult);
         if (!bindingResult.hasErrors()) {
         	opera.setArtista(this.artistaService.artistaPerId(artistaSelezionato));
-        	opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
+        	if(collezioneSelezionata != null)
+        		opera.setCollezione(this.collezioneService.collezionePerId(collezioneSelezionata));
            	
         	if(!foto.isEmpty()) {
 	        	try {
