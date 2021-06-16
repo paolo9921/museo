@@ -18,18 +18,18 @@
 				
 				<div class="riga">
 					<div class="allinea">
-						<h2 th:text="#{opera.autore}">Nome:</h2>
+						<h3 th:text="#{opera.autore}">Nome:</h3>
 					</div>
 					<div class="allinea">
-						<a th:href="@{'/artista' + '/' + ${opera.artista?.id}}" th:if="*{artista}" th:text="*{artista} ? |*{artista.nome} *{artista.cognome}|"></a>
+						<a id="nomeAutore" th:href="@{'/artista' + '/' + ${opera.artista?.id}}" th:if="*{artista}" th:text="*{artista} ? |*{artista.nome} *{artista.cognome}|"></a>
 						<span th:unless="*{artista}" th:text="#{artista.sconosciuto}"></span>
 					</div>
 				</div>
 				
 				
 				<div>
-					<h2 th:text="#{opera.descrizione}"></h2>
-					<p class="descrizione" th:text="|#{opera.inizioDescrizione} *{anno}.|">
+					<h3 th:text="#{opera.descrizione}"></h3>
+					<p th:if="${opera.anno}" class="descrizione" th:text="|#{opera.inizioDescrizione} *{anno}.|">
 					<p class="descrizione" th:text="*{descrizione}">
 				</div>
 				
