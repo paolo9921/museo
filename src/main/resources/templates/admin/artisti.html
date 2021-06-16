@@ -85,20 +85,20 @@
 					<div id="box2">
 						<h3 th:text="#{orderBy}"></h3>
 						<div>
-							<form th:action="@{/artisti}" method="GET">
+							<form th:action="@{admin/artisti}" method="GET">
 								<button type="submit" th:text="#{order.name}">Nomeee</button>
 							</form>
-							<form th:action="@{/orderCognome}" method="GET">
+							<form th:action="@{admin/orderCognome}" method="GET">
 								<button type="submit" th:text="#{order.surname}">Nomeee</button>
 							</form>
-							<form th:action="@{/orderNazione}" method="GET">
+							<form th:action="@{admin/orderNazione}" method="GET">
 								<button type="submit" th:text="#{order.nation}">Nomeee</button>
 							</form>
 							<br>
-							<form th:action="@{/orderNascita}" method="GET">
+							<form th:action="@{admin/orderNascita}" method="GET">
 								<button type="submit" th:text="#{order.birth}">Nomeee</button>
 							</form>
-							<form th:action="@{/orderMorte}" method="GET">
+							<form th:action="@{admin/orderMorte}" method="GET">
 								<button type="submit" th:text="#{order.death}">Nomeee</button>
 							</form>
 						</div>
@@ -114,41 +114,7 @@
 	
 	
 	
-		<table align="center" class="table-ext">
-		<caption th:text="#{artisti.table.caption}">ELENCO ARTSTI</caption>
-		<thead>			
-			<tr>
-				<th id="colonnaNome" th:text="#{artisti.table.name}">NOME</th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr>
-				<td colspan="3">
-					<div class="divinterno">
-						<table align="center" class="table-int">
-							<tr th:each="artista : ${artisti}">
-								<td id="colonnaNome"><a
-									th:href="@{'/artista' + '/' + ${artista.id}}"
-									th:text="${artista.nome}+' '+${artista.cognome}"></a></td>
-								
-								<td class="opzioniCollezioni"><a
-						th:href="@{'/artisti/modifica'+'/'+${artista.id}}" th:text="#{admin.modifica}">modifica</a></td>
-					<td class="opzioniCollezioni"><a
-						th:href="@{'/artisti/delete'+'/'+${artista.id}}" th:text="#{admin.elimina}">elimina</a></td>
-
-							</tr>
-						</table>
-						<!--Table-int-->
-					</div>
-				</td>
-				<!--/colspan tabella ext-->
-			</tr>
-		</tbody>
-	</table>
-	<!--/table-ext-->
+		
 		<div>
 			<form th:action="@{/admin/addArtista}">
 				<button type="submit" th:text="#{button.addArtista}"></button>

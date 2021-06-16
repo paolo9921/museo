@@ -50,26 +50,51 @@ public class ArtistaController {
     		model.addAttribute("artisti", this.artistaService.tuttiPerNome());
     		return "artisti.html";
     }
+    @RequestMapping(value = "admin/artisti", method = RequestMethod.GET)
+    public String getArtistiAdmin(Model model) {
+    	model.addAttribute("artisti", this.artistaService.tuttiPerNome());
+    	return "admin/artisti.html";
+    }
     
     @RequestMapping(value = "/orderCognome", method = RequestMethod.GET)
     public String getArtistiPerCognome(Model model) {
     	model.addAttribute("artisti", this.artistaService.tuttiPerCognome());
     	return "artisti.html";
     }
+    @RequestMapping(value = "admin/orderCognome", method = RequestMethod.GET)
+    public String getArtistiPerCognomeAdmin(Model model) {
+    	model.addAttribute("artisti", this.artistaService.tuttiPerCognome());
+    	return "admin/artisti.html";
+    }
     @RequestMapping(value = "/orderNazione", method = RequestMethod.GET)
     public String getArtistiPerNazione(Model model) {
     	model.addAttribute("artisti", this.artistaService.tuttiPerNazione());
     	return "artisti.html";
+    }
+    @RequestMapping(value = "admin/orderNazione", method = RequestMethod.GET)
+    public String getArtistiPerNazioneAdmin(Model model) {
+    	model.addAttribute("artisti", this.artistaService.tuttiPerNazione());
+    	return "admin/artisti.html";
     }
     @RequestMapping(value = "/orderNascita", method = RequestMethod.GET)
     public String getArtistiPerNascita(Model model) {
     	model.addAttribute("artisti", this.artistaService.tuttiPerNascita());
     	return "artisti.html";
     }
+    @RequestMapping(value = "admin/orderNascita", method = RequestMethod.GET)
+    public String getArtistiPerNascitaAdmin(Model model) {
+    	model.addAttribute("artisti", this.artistaService.tuttiPerNascita());
+    	return "admin/artisti.html";
+    }
     @RequestMapping(value = "/orderMorte", method = RequestMethod.GET)
     public String getArtistiPerMorte(Model model) {
     	model.addAttribute("artisti", this.artistaService.tuttiPerMorte());
     	return "artisti.html";
+    }
+    @RequestMapping(value = "admin/orderMorte", method = RequestMethod.GET)
+    public String getArtistiPerMorteAdmin(Model model) {
+    	model.addAttribute("artisti", this.artistaService.tuttiPerMorte());
+    	return "admin/artisti.html";
     }
 
     @RequestMapping(value = "/artista/{id}", method = RequestMethod.GET)
@@ -81,11 +106,7 @@ public class ArtistaController {
     
     /*		ADMIN		*/
     
-    @RequestMapping(value = "/admin/artisti", method = RequestMethod.GET)
-    public String getArtistiAdmin(Model model) {
-    		model.addAttribute("artisti", this.artistaService.tutti());
-    		return "admin/artisti.html";
-    }
+
 	
     @RequestMapping(value="/admin/addArtista", method = RequestMethod.GET)
     public String addArtista(Model model) {

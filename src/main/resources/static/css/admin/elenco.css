@@ -97,3 +97,14 @@ button:hover{
 .data{
 	width:12%;
 }
+.primaColonna {
+	width: 35%;
+}
+.colonnaNazione {
+	width: 20%;
+}
+
+.colonnaData {
+	width: 15%;
+}
+
