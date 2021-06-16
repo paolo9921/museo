@@ -94,6 +94,7 @@ h1 {
 	clear: both;
 	display: flex;
 	align-items:center;
+	font-size:18px;
 }
 
 #footer a {
