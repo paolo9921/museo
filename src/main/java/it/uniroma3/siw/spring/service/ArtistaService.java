@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -28,6 +30,8 @@ public class ArtistaService {
 	
 	@Autowired
 	private Cloudinary cloudinary;
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional 
 	public Artista inserisci(Artista artista) {
@@ -76,16 +80,7 @@ public class ArtistaService {
 			return null;
 	}
 	
-	//la variabile nome potrebbe essere anche il cognome che l'utente ha cercato
-	@Transactional
-	public List<Artista> artistaPerNome(String nome) {
-		return artistaRepository.findByNomeOrCognome(nome, nome);
-	}
 	
-	@Transactional
-	public List<Artista> artistaPerNazione(String nazione) {
-		return artistaRepository.findByNazionalita(nazione);
-	}
 	
 	@Transactional
 	public void cancella(Artista artista) {
@@ -133,4 +128,26 @@ public class ArtistaService {
 		}
 		
 	}
+	
+	//la variabile nome potrebbe essere anche il cognome che l'utente ha cercato
+		@Transactional
+		public List<Artista> artistaPerNome(String nome) {
+			return artistaRepository.findByNomeOrCognome(nome, nome);
+		}
+		
+		@Transactional
+		public List<Artista> artistaPerNazione(String nazione) {
+			return artistaRepository.findByNazionalita(nazione);
+		}
+
+		@Transactional
+		public List<Artista> artistaPerNomeIsLike(String nome) {	
+			return this.artistaRepository.findAllByNomeOrCognomeIsLike(nome);
+		}
+		
+		@Transactional
+		public List<Artista> artistaPerNazioneIsLike(String nazione) {	
+			return this.artistaRepository.findAllByNazioneIsLike(nazione);
+		}
+		
 }

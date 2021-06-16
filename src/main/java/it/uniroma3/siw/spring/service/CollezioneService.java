@@ -55,6 +55,11 @@ public class CollezioneService {
 		return collezioneRepository.findByNome(nome);
 	}
 	
+	@Transactional
+	public List<Collezione> collezionePerNomeIsLike(String nome) {
+		return collezioneRepository.findAllByNomeIsLike(nome);
+	}
+	
 	
 	@Transactional
 	public void cancella(Collezione collezione) {

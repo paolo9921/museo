@@ -25,4 +25,10 @@ public interface OperaRepository extends CrudRepository<Opera,Long>{
 	public List<Opera> findByOrderByTitoloAsc();
 	public List<Opera> findByOrderByAnnoAsc();
 	public List<Opera> findByOrderByCollezioneAsc();
+	
+	@Query("SELECT o FROM Opera o WHERE titolo LIKE %?1%")
+	public List<Opera> findAllByTitoloIsLike(String nome);
+	
+	@Query("SELECT o FROM Opera o WHERE artista.nome LIKE %?1%")
+	public List<Opera> findAllByArtistaIsLike(String nome);
 }

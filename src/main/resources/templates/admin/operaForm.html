@@ -55,9 +55,8 @@
 						<strong>Collezione:</strong><br> <select
 							name="collezioneSelezionata">
 							<option th:if="${opera.collezione != null}" th:text="${opera.collezione.nome}" th:value="${opera.collezione.id}">
-							<option th:each="collezione : ${altreCollezioni}"
-								th:value="${collezione.id}" th:text="${collezione.nome}" 
-								 />
+							<option th:each="collezione : ${altreCollezioni}" th:value="${collezione.id}" th:text="${collezione.nome}">
+							<option th:text="#{opera.noCollezione}" th:value="null">
 						</select>
 					</div>
 				</div>

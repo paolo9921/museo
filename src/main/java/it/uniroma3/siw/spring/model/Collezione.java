@@ -19,7 +19,7 @@ public class Collezione {
 	@Column 
 	private String descrizione;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Curatore curatore;
 	
 	@Column

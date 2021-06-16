@@ -177,11 +177,9 @@ public class OperaController {
     public String cercaPerTitolo(@RequestParam("titoloOpera") String titolo, Model model){
     	if(titolo.equals("")) {
     		model.addAttribute("opere",this.operaService.tutti());
-    	}else {
-    		
-    		model.addAttribute("opere", this.operaService.operaPerTitolo(StringUtils.capitalize(titolo)));
-    		
-    	}
+    	}else {    		
+    		model.addAttribute("opere", this.operaService.operaPerTitoloIsLike(StringUtils.capitalize(titolo)));
+    		}
     	
     	return "opere.html";
     }

@@ -155,7 +155,7 @@ public class CollezioneController {
     		model.addAttribute("collezioni",this.collezioneService.tutti());
     	}else {
     		
-    		model.addAttribute("collezioni", this.collezioneService.collezionePerNome(StringUtils.capitalize(nome)));
+    		model.addAttribute("collezioni", this.collezioneService.collezionePerNomeIsLike(StringUtils.capitalize(nome)));
     	}
     	
     	return "collezioni.html";

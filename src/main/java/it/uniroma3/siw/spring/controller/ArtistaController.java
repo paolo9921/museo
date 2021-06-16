@@ -171,8 +171,7 @@ public class ArtistaController {
     	if(nome.equals("")) {
     		model.addAttribute("artisti",this.artistaService.tutti());
     	}else {
-    		
-    		model.addAttribute("artisti", this.artistaService.artistaPerNome(StringUtils.capitalize(nome)));
+    		model.addAttribute("artisti", this.artistaService.artistaPerNomeIsLike(StringUtils.capitalize(nome)));
     	}
     	
     	return "artisti.html";
@@ -182,7 +181,7 @@ public class ArtistaController {
     public String cercaPerNazione(@RequestParam("nazioneArtista") String nazione, Model model){
     	//if(nome.equals(""))
     		//return "collezioni.html";
-    	model.addAttribute("artisti", this.artistaService.artistaPerNazione(StringUtils.capitalize(nazione)));
+    	model.addAttribute("artisti", this.artistaService.artistaPerNazioneIsLike(StringUtils.capitalize(nazione)));
     	
     	return "artisti.html";
     }

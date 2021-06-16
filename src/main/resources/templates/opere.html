@@ -39,7 +39,8 @@
 											
 										
 										
-										<td class="colonnaCollezione" th:text="${opera.collezione.nome}"></td>
+										<td th:if="${opera.collezione}" class="colonnaCollezione"><a th:text="${opera.collezione.nome}" th:href="@{'/collezione' + '/' + ${opera.collezione.id}}"></a></td>
+										<td th:unless="${opera.collezione}" class="colonnaCollezione" th:text="#{opera.noCollezione}">
 										<td class="colonnaAnno" th:text="${opera.anno}"></td>
 
 									</tr>
