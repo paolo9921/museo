@@ -3,8 +3,7 @@ html, body {
 }
 
 body {
-	font-family:calibri;
-	font-family: 'Muli';
+	font-family: "Muli","arial","calibri";
 	 font-size: 22px; 
 	background: url("/images/sfondoHome.jpg");
 	min-height: 100vh;

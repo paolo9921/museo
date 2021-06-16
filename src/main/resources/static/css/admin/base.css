@@ -1,6 +1,6 @@
 html,body{height:100%}
 body{
-	font-family: 'Muli';
+	font-family: "Muli","arial","calibri";
 	background: url("/images/site-background-1.png");
 	text-align: center;
 	margin: 0px;
